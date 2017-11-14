@@ -1,0 +1,84 @@
+.question {
+    margin-left: 0;
+}
+.question-title {
+    border-bottom: none;
+    display: table-cell;
+    padding: 10px;
+    position: inherit;
+}
+#right-sidebar, .m-hide{
+    display: none;
+}
+.nav li {
+    float: left;
+    height: 15px;
+    list-style: outside none none;
+    padding: 10px 7px 12px;
+}
+#question .user-info, .answer .user-info {
+    border-bottom-color: #dadcdf;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    box-shadow: 0 2px 3px rgba(100, 100, 100, 0.1);
+    box-sizing: border-box;
+    clear: both;
+    display: inline-block;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 10px;
+    text-align: left;
+    width: 100%;
+}
+.user-details, .relativetime{
+    margin-top: 4px;
+}
+.user-action-time{
+    margin: 6px 0;
+}
+.sort-wrap {
+    background-color: #e9eef5;
+    border-bottom: 1px solid #dde1e6;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 12px 7px;
+    width: 100%;
+}
+.sort-wrap .subheader {
+    color: #444;
+    float: left;
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 4px;
+}
+.sort-wrap .subheader span {
+    color: #999;
+    font-weight: 400;
+}
+.new .post-wapper, .hackernew .hackernew-post{
+    padding: 10px 15px;
+}
+
+/*List tags @/tags*/
+
+.list-tags {
+    margin: 0 10px;
+    padding-top: 10px;
+}
+.list-tags .info {
+    font-weight: bold;
+}
+.button-gray a {
+    background-color: #3a3d41;
+    border: 1px solid #3a3d41;
+    border-radius: 4px;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    margin: 0 3px 3px 0;
+    padding: 0.4em 0.8em 0.4em 0.4em;
+    text-decoration: none;
+    white-space: nowrap;
+}

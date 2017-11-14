@@ -1,0 +1,67 @@
+/*
+* Content Categories
+*/
+
+.v-categories{
+
+  .content-block {
+    .cb-header {
+      padding: @space-xs 0;
+      margin-bottom: @space-sm;
+      color: @c-light;
+      border-bottom: solid 1px @c-divider;
+      .list-inline {
+        margin: 0;
+        margin-left: -5px;
+        line-height: 34px;
+      }
+    }
+    .cb-content {
+      margin-bottom: @space-med;
+    }
+    .b-category {
+      border-radius: 2px;
+      margin-bottom: 45px;
+      &.last-row {
+        margin-bottom: 0;
+      }
+      .name {
+        font-weight: 500;
+        margin-top: @space-sms;
+        display: block;
+      }
+      .desc {
+        color: @c-light;
+        display: block;
+        font-size: @fs-defs;
+        margin-top: 5px;
+      }
+    }
+  }
+
+}
+
+
+@media (min-width: 100px) and (max-width: 767px) {
+  .b-category {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1365px) {
+  .b-category {
+    &.last-row{
+      margin-bottom: 45px !important;
+    }
+    img {
+      width: 100%;
+    }
+  }
+}
+
+
+/*
+* Content Categories END
+*/

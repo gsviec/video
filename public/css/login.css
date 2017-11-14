@@ -1,0 +1,105 @@
+.login-page {
+    width: 100%;
+    padding: 70px 0;
+    margin: 16px auto;
+    background: #888888;
+}
+.user-login a {
+    float: left;
+    width: 30%;
+    color: #7e7e7e;
+}
+.user-login a:hover {
+    color: #ea2c5a;
+}
+.title-login, .ctn-login {
+    width: 50%;
+    float: left;
+}
+.title-login {
+    margin-top: 274px;
+}
+.signup-page .title-login {
+    margin-top: 395px;
+}
+.title-login .hr {
+    width: 49%;
+    border-top: 1px solid #ea2c5a;
+}
+.title-login h1 {
+    color: #fff;
+    font-size: 80px;
+}
+.title-login h1 span {
+    color: #ea2c5a;
+}
+.title-login p {
+    color: #a1a1a1;
+}
+.ctn-login {
+    padding: 30px 0;
+    background: #fff;
+    border-radius: 4px;
+}
+.ctn-login h3 {
+    color: #343434;
+    font-size: 22px;
+    text-align: center;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eceff0;
+}
+.ctn-login .checkbox, .ctn-login .button-login {
+    padding: 10px 68px;
+}
+.checkbox label, .radio label {
+    padding-left: 0;
+    font-weight: 500;
+}
+.checkbox label.title-check {
+    padding-left: 30px;
+}
+.ctn-login input.form-control {
+    height: 45px;
+    margin: 10px 0 30px;
+    box-shadow: none;
+}
+.ctn-login input.txt-check {
+    height: auto;
+    margin: 4px 0;
+}
+.ctn-login .checkbox span {
+    font-size: 14px;
+    color: #7e7e7e;
+}
+.btn-login, .btn-sign {
+    color: #fff;
+    height: 62px;
+    width: 243px;
+    font-size: 18px;
+    font-weight: 500;
+    background: #ea2c5a;
+    transition: all 0.6s ease 0s;
+}
+.btn-login:hover, .btn-sign:hover {
+    color: #fff;
+    background: #7e7e7e;
+}
+.btn-sign:hover {
+    color: #343434;
+}
+.btn-sign {
+    width: auto;
+    float: right;
+    color: #343434;
+    background: none;
+}
+.button-login span {
+    color: #7e7e7e;
+    margin: 0 10px 0 33px;
+    font-family: 'Hind', sans-serif;
+}
+
+.button-login p {
+    color: #7e7e7e;
+    margin: 30px 0;
+}

@@ -1,0 +1,31 @@
+{
+    "name": "Phanbook/phanbook",
+    "description": "Phanbook App",
+    "minimum-stability": "dev",
+    "license": "GNU",
+    "authors": [
+    {
+        "name": "Phanbook",
+        "email": "hello@phanbook.com"
+    }
+    ],
+    "require-dev": {
+        "fzaninotto/faker": "1.5.*@dev",
+        "squizlabs/php_codesniffer": "1.*",
+        "codeception/codeception": "2.1.2"
+    },
+    "require": {
+        "swiftmailer/swiftmailer": "@stable",
+        "league/oauth2-client": "2.2.1",
+        "elasticsearch/elasticsearch": "~2.0",
+        "google/apiclient": "1.0.*@beta",
+        "league/flysystem": "^1.1@dev",
+        "erusev/parsedown": "^1.6",
+        "hashids/hashids": "~2.0",
+        "aws/aws-sdk-php" : "^3.0",
+        "chrisboulton/php-resque" : "dev-master",
+        "league/oauth2-google": "^2.0",
+        "league/oauth2-facebook": "^2.0"
+
+    }
+}
