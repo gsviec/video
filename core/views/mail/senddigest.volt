@@ -2,25 +2,21 @@
 {% block content %}
     Xin chào {{fullName}},
 
- <p>Trong video này chúng tôi sẽ hướng dẫn bạn cách cấu hình Route 53 trên godady.com cũng như giới thiệu sơ qua trang quản trị Route 53</p>
+<h4>"CHO ĐI" BẰNG CÔNG NGHỆ FACEBOOK!</h4>
 
- <p>Tại sao nên dùng Route 53</p>
+<p>Quá trình khởi nghiệp là quá trình gian nan và may mắn là chúng tôi được hỗ trợ, không chỉ là gói 40.000 công cụ cho Lackky từ #Fbstart mà còn các công nghệ của #Facebook được tích hợp vào từng dự án. Các công cụ này giúp các dự án chúng tôi được thêm nhiều tiện ích.</p>
 
-<ul>
-<li>
-<p>Chi phí cực kỳ rẻ: $0.400 per million queries – first 1 Billion queries / month</p>
-</li>
-<li>
-<p>Cung cấp healthy để kiểm tra service của bạn còn hoạt động hay không rất là tiện lợi cho việc cấu hình load balancer(Healthy and Weighted Routing Policy)</p>
-</li>
-<li>
-<p>Cung cấp các policy(chính sách) điều hướng lượng trafic đến các service của bạn</p>
-</li>
-<li>
-<p>Sự phản hồi cực kỳ nhanh chóng(Latency based Routing Policy)</p>
-</li>
-</ul>
-<p>Để xem chi tiết các bạn có thể xem qua link sau <a href="https://gsviec.com/watch?v=wkx">https://gsviec.com/watch?v=wkx</a></p>
+<p>
+Hôm nay, chúng tôi Public mã nguồn của gsviec tại github. Gsviec là dự án mà chúng tôi mong muốn phục vụ cho công việc, học tập của những ai đã, đang và muốn theo con đường coder. Công nghệ của Facebook mà chúng tôi tích hợp vào đây là Facebook login và Facebook Anaylytic. Đồng thời chúng tôi cũng đã bàn bạc đưa thêm vào công cụ #Chatbox tự động dựa trên Facebook #message. Gsviec clone theo #Youtube 1 phần, hi vọng các bạn sẽ sử dụng mã nguồn này vào mục đích có ý nghĩa cho xã hội.
+Các bạn muốn tìm hiểu về mã nguồn của Gsviec hãy truy cập link sau nha: https://github.com/gsviec/video </p>
 
-<strong>Để chắc chắn email của chúng tôi không bị báo là spam bạn hãy thêm vào contact trong email của bạn.</strong>
+<p>
+Lackky là một dự án về mạng xã hội chia sẻ hình ảnh thú cưng đã có ứng dụng cho #Android và #iOS , cũng như Gsviec.com , chúng tôi cũng tích hợp Analytic và Login từ Facebook. Lackky vẫn đang phát triển thêm Computer Vision của thư viện Caffe2, AI.</p>
+
+<p>
+Startup của chúng tôi nhận từ xã hội rất nhiều, từ những bài học, hỗ trợ cho nên việc xác định cho đi phải ưu tiên kèm theo những mục tiêu khác: "Sống là cho đâu chỉ nhận riêng mình", với việc public mã nguồn Gsviec hôm nay thì tương lai gần chúng tôi sẽ tiếp tục Public phần server side của Lackky.
+
+</p>
+Cám ơn Facebook!
+
 {% endblock %}

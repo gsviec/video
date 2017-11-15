@@ -40,7 +40,7 @@ class Auth extends Injectable
         $this->redirectUriAuthorize = $config->redirectUri;
         $this->clientId             = $config->clientId;
         $this->clientSecret         = $config->clientSecret;
-        $this->graphApiVersion       = $config->graphApiVersion ?? 'v2.10';
+        $this->graphApiVersion      = $config->graphApiVersion ?? 'v2.10';
     }
 
     /**

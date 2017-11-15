@@ -15,9 +15,8 @@ namespace Phanbook\Mail;
 use Phalcon\Mvc\User\Component;
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\Model\Validator\Email as Email;
-use Phanbook\Models\Template;
 
-require_once ROOT_DIR . '/vendor/swiftmailer/swiftmailer/lib/swift_required.php';
+require_once ROOT_DIR . '/vendor/autoload.php';
 
 use Swift_Mailer;
 use Swift_Message;
@@ -30,11 +29,6 @@ class Mail extends Component
 
     private function getTemplate($key, $params)
     {
-        if (!isset($params['subject'])) {
-            $subject = $this->config->application->name;
-        } else {
-            $subject = $params['subject'];
-        }
 
         //Set views layout
         $this->view->setViewsDir(app_path('core/views/'));
@@ -46,7 +40,6 @@ class Mail extends Component
                 $view->setRenderLevel(View::LEVEL_LAYOUT);
             }
         );
-        //echo $render;die();
 
         if (!empty($render)) {
             return $render;
@@ -77,23 +70,21 @@ class Mail extends Component
         } else {
             $subject = $params['subject'];
         }
-
+        $mail = $this->config->mail;
         // Create the message
-        $message = Swift_Message::newInstance()
-            ->setSubject($subject)
+        $message = new Swift_Message($subject);
+        $message
             ->setTo($to)
-            ->setFrom([$this->config->mail->fromEmail => $this->config->mail->fromName])
+            ->setFrom([$mail->fromEmail => $mail->fromName])
             ->setBody($body, 'text/html');
         if (!$this->transport) {
-            $this->transport = Swift_SmtpTransport::newInstance(
-                $this->config->mail->smtp->server,
-                $this->config->mail->smtp->port
-            )
-                ->setUsername($this->config->mail->smtp->username)
-                ->setPassword($this->config->mail->smtp->password);
+            $transport = new Swift_SmtpTransport($mail->smtp->server, $mail->smtp->port);
+            $transport->setUsername($mail->smtp->username);
+            $transport->setPassword($mail->smtp->password);
+            $this->transport = $transport;
         }
 
-        $mailer = Swift_Mailer::newInstance($this->transport);
+        $mailer = new Swift_Mailer($this->transport);
         return $mailer->send($message);
     }
 
