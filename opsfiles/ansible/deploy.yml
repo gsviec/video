@@ -1,0 +1,29 @@
+ - hosts: web
+   become: true
+   vars:
+    ansistrano_deploy_from: "{{ playbook_dir }}/../"
+    ansistrano_deploy_to: "/srv/www/gsviec.video"
+    release_var_path: "{{ ansistrano_release_path.stdout }}/var"
+    
+    # release_upload_path: 
+    ansistrano_current_dir: "current"
+    ansistrano_current_via: "symlink"
+    ansistrano_version_dir: "releases" # Releases folder name
+    ansistrano_keep_releases: 2
+    ansistrano_deploy_via: git
+     # Variables used in the Git deployment strategy
+    ansistrano_git_repo: git@github.com:gsviec/video.git  # Location of the git repository
+    ansistrano_git_branch: "{{ branch_deploy | default('master') }}" # What version of the repository to check out. This can be the full 40-character SHA-1 hash, the literal string HEAD, a branch name, or a tag name
+    ansistrano_git_repo_tree: "" # If specified the subtree of the repository to deploy
+    #: "/Users/phanbook/.ssh/id_rsa" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
+    ansistrano_git_identity_key_path: "~/.ssh/id_rsa_macos"
+    # ansistrano_shared_paths:
+    #    - var/logs
+
+    #ansistrano_git_identity_key_remote_path: "{{ lookup('env', 'ANSIBLE_GIT_KEY')|default('~/.ssh/id_rsa') }}" # If specified this file on the remote server is used as the identity key for the git commands, remote path is absolute
+    ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/deploy/after-symlink.yml"
+    ansistrano_after_symlink_shared_tasks_file: "{{ playbook_dir }}/deploy/after-symlink-shared.yml"
+   roles:
+    - { role: carlosbuenosvinos.ansistrano-deploy }
+  
+  

@@ -1,0 +1,56 @@
+- set_fact: role_name=basics
+
+##################################################
+### Basic system packages and firewall config
+
+- name: cleanup-only
+  shell: yum-complete-transaction --cleanup-only
+- name: Update Yum
+  yum: name=* state=latest
+
+- name: Install epel-release
+  shell: yum  install epel-release -y
+
+- name: Install basic packages
+  yum: pkg={{ item }} state=installed
+  with_items:
+   - yum-utils
+   - vim
+   - git
+   - curl
+   - wget
+   - vim
+   - man
+   - zip
+   - unzip
+   - firewalld
+   - gcc
+   - make
+   - re2c
+   - openssl-devel
+
+- name: Lazy paste
+  shell: yum install gcc libxml2-devel libXpm-devel gmp-devel libicu-devel \
+    t1lib-devel aspell-devel openssl-devel bzip2-devel libcurl-devel \
+    libjpeg-devel libvpx-devel libpng-devel freetype-devel readline-devel \
+    libtidy-devel libxslt-devel libmcrypt-devel pcre-devel curl-devel \
+    mysql-devel ncurses-devel gettext-devel net-snmp-devel libevent-devel \
+    libtool-ltdl-devel libc-client-devel postgresql-devel bison gcc make wget -y
+
+- name: Set up firewall
+  shell: systemctl enable firewalld
+
+- name: Start the firewall
+  shell: systemctl start firewalld
+
+- name: Allow public to port 22 in firewall
+  shell: firewall-cmd --zone=public --add-port=22/tcp --permanent
+
+- name: Reload firewall
+  shell: firewall-cmd --reload
+
+# - name: Disbale SELINUX temporarily
+#   shell: setenforce 0
+
+- name: Disbale SELINUX
+  shell: sed -i 's/enforcing/disabled/g' /etc/selinux/config

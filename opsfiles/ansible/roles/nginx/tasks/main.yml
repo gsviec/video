@@ -1,0 +1,7 @@
+- set_fact: role_name=nginx
+
+##################################################
+### Install, configure and secure webserver
+- include: install.yml
+- include: configure.yml
+- include: secure.yml

@@ -1,0 +1,12 @@
+- set_fact: role_name=tuning
+
+##################################################
+### Install, configure and secure webserver
+- include: configure.yml
+- include: secure.yml
+
+- name: Restart server
+  command: /sbin/shutdown -r +1
+  async: 0
+  poll: 0
+  ignore_errors: true

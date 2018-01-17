@@ -1,0 +1,16 @@
+#192.168.1.10 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+web01 ansible_ssh_host=54.89.180.65 ansible_ssh_port=22
+web02 ansible_ssh_host=54.243.6.232 ansible_ssh_port=22
+
+db01 ansible_ssh_host=34.201.73.248 ansible_ssh_port=22
+ha01 ansible_ssh_host=34.238.233.79 ansible_ssh_port=22
+ 
+[web]
+web01
+web02
+
+[db]
+db01
+
+[haproxy]
+ha01

@@ -1,0 +1,39 @@
+- hosts: glusterfs
+  become: true
+  vars:
+    glusterfs_version: "3.10"
+    glusterfs_default_bricks_dir: /bricks
+    glusterfs_configure_firewalld: True
+    glusterfs_volumes:
+    # - volume: volume1  # Replicated with arbiter node
+    #   state: present       
+    #   replica: 2
+    #   mount:
+    #     path: "/srv/www/shared"
+    - volume: volume2  # Replicated with arbiter node
+      state: present       
+      replica: 2
+      mount:
+        path: "/mnt/volume2"
+
+    - volume: volume3  # Replicated with arbiter node
+      state: present       
+      replica: 2
+      mount:
+        path: "/srv/www/shared"
+            
+    # - volume: volume2  # Distributed in 2 nodes
+    #   state: present
+    #   nodes:
+    #     - node1.glusterfs
+    #     - node2.glusterfs
+    #   options:
+    #     performance.cache-size: 256MB
+    #   mount:
+    #     path: "/mnt/volume2"
+    #     owner: exampleuser
+    #     group: examplegroup
+    #     mode: "0770"
+            
+  roles:
+    - role: zaxos.glusterfs-ansible-role

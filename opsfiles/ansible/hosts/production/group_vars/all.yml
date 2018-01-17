@@ -1,0 +1,30 @@
+# These are the Drupal database settings
+drupal_db_name: d8 
+drupal_db_user: phanbook
+drupal_db_password: phanbook
+drupal_db_host: 127.0.0.1
+
+# You shouldn't need to change this.
+mysql_port: 3306
+
+APPLICATION_ENV: production
+
+
+#nginx role
+worker_processes: 2
+worker_connections: 50000
+keepalive_requests: 100000
+keepalive_timeout: 65
+client_body_buffer_size: 128k
+client_max_body_size: 15m
+client_header_buffer_size: 1k
+
+somaxconn: 50000
+tcp_max_tw_buckets: 1440000
+ip_local_port_range: 1024 65000
+tcp_fin_timeout: 15
+tcp_max_syn_backlog: 3240000
+tcp_window_scaling: 1
+
+#limits.conf
+max_open_file: 999999

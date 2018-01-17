@@ -1,0 +1,8 @@
+- name: Gluster packages are installed
+  yum: pkg={{ item }}
+  with_items:
+    - centos-release-gluster37
+    - glusterfs-server
+
+- name: Start the MariaDB service
+  service: name=mariadb state=started enabled=true

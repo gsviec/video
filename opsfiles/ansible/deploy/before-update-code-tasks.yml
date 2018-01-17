@@ -1,0 +1,2 @@
+#- name: Setup the wp-config.php
+  #template: src="{{ playbook_dir }}/..//share/wp-config.php.j2" dest=/var/www/app/web/wp-config.php

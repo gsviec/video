@@ -1,0 +1,8 @@
+- set_fact: role_name=php
+
+##################################################
+### Install PHP
+- include: install.yml
+- include: configure.yml
+
+

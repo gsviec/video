@@ -1,0 +1,18 @@
+- hosts: web
+
+  become: true
+  roles:
+    - { role: basics,  tags: [ 'basics'] }
+    - { role: nginx,  tags: [ 'nginx'] }
+    - { role: php,  tags: [ 'php'] }
+- hosts: db
+  become: true
+  roles:
+  - basics
+  - { role: percona,  tags: [ 'percona'] }
+
+- hosts: haproxy
+  become: true
+  roles:
+  - basics
+  - haproxy

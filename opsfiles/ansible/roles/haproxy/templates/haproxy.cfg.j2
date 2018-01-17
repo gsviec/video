@@ -1,0 +1,58 @@
+global
+  log /dev/log  local0
+  log /dev/log  local1 notice
+{% if haproxy_socket != '' %}
+  stats socket {{ haproxy_socket }} level admin
+{% endif %}
+{% if haproxy_chroot != '' %}
+  chroot {{ haproxy_chroot }}
+{% endif %}
+  user {{ haproxy_user }}
+  group {{ haproxy_group }}
+  daemon
+{% for global_var in haproxy_global_vars %}
+  {{ global_var }}
+{% endfor %}
+  maxconn {{ haproxy_maxconn }}
+
+defaults
+    mode                    http
+    log                     global
+    option                  httplog
+    option                  dontlognull
+    option http-server-close
+    option forwardfor       except 127.0.0.0/8
+    option                  redispatch
+    retries                 3
+    timeout http-request    10s
+    timeout queue           1m
+    timeout connect         10s
+    timeout client          1m
+    timeout server          1m
+    timeout http-keep-alive 10s
+    timeout check           10s
+    maxconn {{ haproxy_maxconn }}
+
+frontend {{ haproxy_frontend_name }}
+    bind {{ haproxy_frontend_bind_address }}:{{ haproxy_frontend_port }}
+    mode {{ haproxy_frontend_mode }}
+    default_backend {{ haproxy_backend_name }}
+
+backend {{ haproxy_backend_name }}
+    mode {{ haproxy_backend_mode }}
+    balance {{ haproxy_backend_balance_method }}
+    option forwardfor
+    maxconn {{ haproxy_maxconn }}
+{% if haproxy_backend_httpchk != '' %}
+    option httpchk {{ haproxy_backend_httpchk }}
+{% endif %}
+    cookie SERVERID insert indirect
+{% for backend in haproxy_backend_servers %}
+    server {{ backend.name }} {{ backend.address }} cookie {{ backend.name }} check
+{% endfor %}
+
+listen stats *:8080
+    stats enable
+    stats uri /
+    #stats hide-version
+#stats auth phanbook:phanbook

@@ -1,0 +1,51 @@
+# - name: Link Nginx to the shared folder
+#   replace: dest=/etc/nginx/nginx.conf regexp='\/usr\/share\/nginx\/html' replace='/web'
+#
+# - name: Ensure Nginx running
+#   service: name=nginx state=started enabled=yes
+- set_fact:
+    key_file: /etc/nginx/ssl/nginx.key
+    cert_file: /etc/nginx/ssl/nginx.crt
+    vhost_directory: /etc/nginx/vhost
+    server_name: localhost
+
+- name: Create folders
+  file: path={{ item.path }} mode={{ item.mode }} state=directory owner=root group=root
+  with_items:
+    - { path: "/etc/nginx/vhost", mode: 755 }
+
+- file:
+    path: /etc/nginx/ssl
+    state: directory
+    mode: 0755
+
+- name: Copy new config file.
+  template:
+    src=nginx.conf.j2
+    dest=/etc/nginx/nginx.conf
+  notify:
+    - restart nginx
+
+- name: Copy new virtual hosts file.
+  template:
+    src=haproxy-wordpress.conf.j2
+    dest=/etc/nginx/vhost/haproxy-wordpress.conf
+- name: Copy config cache w3 total file.
+  template:
+    src=w3total.cache.conf.j2
+    dest=/etc/nginx/w3total.cache.conf
+- name: Bootup
+  shell: rm -rf /etc/nginx/conf.d/w3total.cache.conf
+
+- name: copy TLS key
+  copy: src=files/nginx.key dest={{ key_file }} owner=root mode=0600
+  notify: restart nginx
+- name: copy TLS certificate
+  copy: src=files/nginx.crt dest={{ cert_file }}
+  notify: restart nginx
+
+- name: restart nginx
+  service: name=nginx state=restarted
+
+- name: Bootup
+  shell: chkconfig nginx on

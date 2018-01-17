@@ -1,0 +1,33 @@
+
+- name: "Configure the package management system"
+  file:
+    path: /opt/mongo/
+    state: directory
+    mode: 0755
+- name: "Copy key mongo"
+  copy: src=files/mongo-keyfile dest=/opt/mongo/mongo-keyfile owner=mongod group=mongod mode=400
+
+- name: Create the mongodb configuration file
+  template: src=mongod.conf.j2 dest=/etc/mongod.conf
+  notify:
+    - restart mongod
+  tags:
+    - ipbind
+
+- name: pause
+  pause: seconds=20
+
+- name: Install Pymongo
+  easy_install:
+    name: pymongo
+    state: latest
+
+- name: add the admin user
+  mongodb_user:
+    database: admin
+    name: root
+    password: "{{ mongo_admin_pass }}"
+    login_port: "{{ mongod_port }}"
+    roles: userAdminAnyDatabase
+    state: present
+  #ignore_errors: yes

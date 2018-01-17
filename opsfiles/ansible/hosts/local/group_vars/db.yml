@@ -1,0 +1,8 @@
+# These are the Drupal database settings
+drupal_db_name: d8 
+drupal_db_user: phanbook
+drupal_db_password: phanbook
+drupal_db_host: 127.0.0.1
+
+# You shouldn't need to change this.
+mysql_port: 3306

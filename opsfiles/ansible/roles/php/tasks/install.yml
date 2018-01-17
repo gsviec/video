@@ -1,0 +1,53 @@
+- name: Install epel from remote repo
+  yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm state=present
+
+- name: Install remi from remote repo
+  yum: name=http://rpms.remirepo.net/enterprise/remi-release-7.rpm state=present
+
+- name: upgrade all packages
+  yum: name=* state=latest
+
+- name: Install php
+  yum: pkg={{ item }} enablerepo=remi,remi-php72 state=present
+  with_items:
+    - php
+
+- name: Install php modules
+  yum: pkg={{ item }} enablerepo=remi,remi-php72 state=present
+  with_items:
+    - php-fpm
+    - php-mbstring
+    - php-devel
+    - php-opcache
+    - php-soap
+    - php-pdo
+    - php-mcrypt
+    - php-pecl-xdebug
+    - php-xml
+    - php-mysql
+    - php-gd
+    - php71-php-pecl-zip
+    - php-pear
+    - php-bcmath
+  notify:
+  - restart php-fpm
+
+- name: Install mongodb extension
+  shell: pecl install mongodb
+  ignore_errors: yes
+
+- name: Adding extension
+  shell: echo "extension=mongodb.so" > /etc/php.d/mongodb.ini
+
+- name: Install extension redisphp
+  shell: |
+    git clone https://github.com/phpredis/phpredis.git
+    cd phpredis
+    git checkout php7
+    phpize
+    ./configure
+    make && make install
+    echo "extension=redis.so" > /etc/php.d/redis.ini
+
+- name: Bootup
+  shell: chkconfig php-fpm on

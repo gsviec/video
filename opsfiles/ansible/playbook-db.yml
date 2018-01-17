@@ -1,0 +1,7 @@
+- hosts: db
+  become: true
+  roles:
+    - basics
+    - mongodb
+  
+  

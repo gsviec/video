@@ -1,0 +1,25 @@
+- set_fact: role_name=basics
+
+- name: Install basic packages
+  yum: pkg={{ item }} state=installed
+  with_items:
+   - haproxy
+- name: Debug
+  debug: var=groups.web
+- name: Copy new config  file.
+  template:
+    src=haproxy.cfg.j2
+    dest=/etc/haproxy/haproxy.cfg
+- name: Restart haproxy
+  shell: service haproxy restart
+
+- name: Bootup haproxy
+  shell: chkconfig haproxy on
+
+- name: Allow public to port 80 in firewall
+  shell:  firewall-cmd --zone=public --add-port=80/tcp --permanent
+- name: Allow public to port 80 in firewall
+  shell:  firewall-cmd --zone=public --add-port=8080/tcp --permanent
+
+- name: Reload firewall
+  shell: firewall-cmd --reload

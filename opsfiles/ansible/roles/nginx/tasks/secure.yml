@@ -1,0 +1,8 @@
+- name: Allow public to port 80 in firewall
+  shell:  firewall-cmd --zone=public --add-port=80/tcp --permanent
+
+- name: Allow public to port 443 in firewall
+  shell: firewall-cmd --zone=public --add-port=443/tcp --permanent
+
+- name: Reload firewall
+  shell: firewall-cmd --reload

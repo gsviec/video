@@ -1,0 +1,15 @@
+# - name: Link Nginx to the shared folder
+#   replace: dest=/etc/nginx/nginx.conf regexp='\/usr\/share\/nginx\/html' replace='/web'
+#
+# - name: Ensure Nginx running
+#   service: name=nginx state=started enabled=yes
+
+
+- name: Copy new File Descriptors
+  template:
+    src=limits.conf.j2
+    dest=/etc/security/limits.conf
+- name: Copy config sysctl.conf file.
+  template:
+    src=sysctl.conf.j2
+    dest=/etc/sysctl.conf

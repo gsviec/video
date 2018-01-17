@@ -1,0 +1,19 @@
+- name: Add allow rule for 3306 to firewall
+  firewalld: zone=public port=3306/tcp permanent=true state=enabled
+  notify:
+  - Restart the mariadb service
+- name: Create a new database with name 'demo_loadbanlancer_wp_gsviec'
+  mysql_db:
+    name: demo_loadbanlancer_wp_gsviec
+    state: present
+
+# Copy database dump file to remote host and restore it to database 'my_db'
+- name: Copy database dump file
+  copy:
+    src: files/demo_loadbanlancer_wp_gsviec.sql
+    dest: /tmp/
+- name: Restore database
+  mysql_db:
+    name: demo_loadbanlancer_wp_gsviec
+    state: import
+    target: /tmp/demo_loadbanlancer_wp_gsviec.sql

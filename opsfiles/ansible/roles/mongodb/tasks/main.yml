@@ -1,0 +1,57 @@
+# - include: centos.yml
+#   when: ansible_distribution == 'CentOS'
+
+# - include: debian.yml
+#   when: ansible_distribution == 'Debian'
+
+- set_fact:
+    mongo_repo_file: /etc/yum.repos.d/mongodb-org-3.4.repo
+   
+- name: "Configure the package management system"
+  copy: src=files/mongodb-org-3.4.repo dest={{ mongo_repo_file }} owner=root mode=0600
+
+- name: Install Mongo
+  yum: pkg={{ item }} state=installed
+  with_items:
+   -  mongodb-org
+  
+
+# - name: "Move the data folder if necessary"
+#   shell: |
+#     creates={{ mongodb_data_path }}
+#     current="$(grep "dbpath=" /etc/mongod.conf 2> /dev/null | cut -d"=" -f2)"
+#     [ "${current}" == "" ] && exit 0
+#     mv ${current} {{ mongodb_data_path }}
+#   tags:
+#     - mongodb
+
+# - name: "Change settings for arbiter"
+#   set_fact:
+#     mongodb_smallfiles: true
+#     mongodb_nojournal: true
+#   when: mongodb_replica_set_name is defined and mongodb_is_arbiter|bool == true
+#   tags:
+#     - mongodb
+
+# - name: "Ensure mongod.conf file is present"
+#   template: >
+#     src=mongod.conf
+#     dest=/etc/mongod.conf
+#     owner=root
+#     group=root
+#     mode=0644
+#   notify:
+#     - Restart MongoDB
+#   tags:
+#     - mongodb
+#     - files
+#     - cfgs
+
+- name: "Ensure MongoDB is running, and starts on boot"
+  service: >
+    name=mongod
+    state=started
+    enabled=yes
+  tags:
+    - mongodb
+- include: config.yml

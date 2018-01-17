@@ -1,0 +1,8 @@
+
+tasks:
+- name: 'Update ip address to access database mongo'
+  template: src=mongod.conf.j2 dest=/etc/mongod.conf
+  notify:
+    - restart mongodb
+  tags:
+    - ipbind

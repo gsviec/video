@@ -1,0 +1,18 @@
+web01 ansible_ssh_host=150.95 ansible_ssh_port=22
+web02 ansible_ssh_host=150.95 ansible_ssh_port=22
+db1 ansible_ssh_host=150.9  ansible_ssh_port=22
+ha1 ansible_ssh_host=150. ansible_ssh_port=9090
+
+[web]
+web01
+web02
+
+[db]
+db1
+
+[haproxy]
+ha1
+
+[glusterfs]
+web01
+web02
