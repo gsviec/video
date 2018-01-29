@@ -1,0 +1,43 @@
+- name: Setup directory blog symlink
+  become: true
+  file:
+    src: '{{ release_blog_path }}'
+    dest:  '{{ ansistrano_release_path.stdout}}/public/blog'
+    state: link
+
+- name: Setup directory dichvu symlink
+  become: true
+  file:
+    src: '{{ release_blog_path }}'
+    dest:  '{{ ansistrano_release_path.stdout}}/public/dichvu'
+    state: link
+
+- name: Setup file config symlink
+  become: true
+  file:
+    src: '{{ release_config_path }}/config.php'
+    dest:  '{{ ansistrano_release_path.stdout}}/core/config/config.php'
+    state: link
+
+- name: Change file ownership, group and mode public
+  become: true
+  file:
+    path:  '{{ ansistrano_release_path.stdout}}/public'
+    mode: 0777
+
+- name: Change file ownership, group and mode cache
+  become: true
+  file:
+    path:  '{{ ansistrano_release_path.stdout}}/var'
+    mode: 0777
+
+- name: Change file ownership, group and mode cache
+  become: true
+  file:
+    path:  '{{ ansistrano_release_path.stdout}}/var/cache/volt'
+    mode: 0777
+- name: Change file ownership, group and mode log
+  become: true
+  file:
+    path:  '{{ ansistrano_release_path.stdout}}/var/logs'
+    mode: 0777
