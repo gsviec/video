@@ -70,51 +70,7 @@
 {% endif %}
 {{this.assets.outputJs()}}
 
-
-<!-- Piwik -->
-<script type="text/javascript">
-      jwplayer.key="ABCdeFG123456SeVenABCdeFG123456SeVen==";
-
-  var _paq = _paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-  _paq.push(["setCookieDomain", "*.gsviec.com"]);
-  _paq.push(["setDomains", ["*.gsviec.com"]]);
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="https://piwik.gsviec.com/";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', '2']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="https://piwik.gsviec.com/piwik.php?idsite=2&rec=1" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
-
 {% block scripts%}{% endblock %}
 
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : facebookApp,
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v2.11'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 </body>
 </html>
