@@ -8,7 +8,7 @@
 - name: Setup directory dichvu symlink
   become: true
   file:
-    src: '{{ release_blog_path }}'
+    src: '{{ release_dichvu_path }}'
     dest:  '{{ ansistrano_release_path.stdout}}/public/dichvu'
     state: link
 
