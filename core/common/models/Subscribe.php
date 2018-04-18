@@ -182,10 +182,15 @@ class Subscribe extends ModelBase
             'name'      => 'name'
         ];
     }
+
     /**
-     * Overwrite messages
+     * Overwrite method get messages
+     *
+     * @param null $filter
+     *
+     * @return array
      */
-    public function getMessages()
+    public function getMessages($filter = NULL)
     {
         $messages = array();
         foreach (parent::getMessages() as $message) {
