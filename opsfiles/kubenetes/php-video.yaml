@@ -1,0 +1,53 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: php-gsviec
+  labels:
+    app: php-gsviec
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php-gsviec
+  template:
+    metadata:
+      labels:
+        app: php-gsviec
+    spec:
+      containers:
+        - image: duythien/video
+          name: php-gsviec
+          env:
+            - name: DB_HOST
+              value: mysql-gsviec:3306
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql
+                  key: password
+            - name: CDN_URL
+              value: https://cdn.lackky.com
+            - name: DB_NAME
+              value: gsviec_video
+            - name: DB_USER
+              value: root
+            - name: APPLICATION_ENV
+              value: production
+
+          ports:
+            - containerPort: 80
+              name: php-gsviec
+          terminationMessagePath: /dev/termination-log
+          volumeMounts:
+            - name: config
+              mountPath: core/config/config.php
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: "registrypullsecret"
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: config
+          configMap:
+            name: gsviec-config

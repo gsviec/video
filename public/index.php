@@ -11,7 +11,6 @@
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
  */
 use Phalcon\Mvc\Application;
-
 error_reporting(E_ALL);
 
 ini_set('memory_limit', '-1');
@@ -51,6 +50,7 @@ try {
 
     echo $application->handle()->getContent();
 } catch (Exception $e) {
+    var_dump($e->getMessage());
     $logger = $di->get('logger');
     $logger->error($e->getMessage());
     $logger->error($e->getTraceAsString());

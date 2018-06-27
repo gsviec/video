@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mysql-gsviec
+  labels:
+    app: mysql-gsviec
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-gsviec
+  template:
+    metadata:
+      labels:
+        app: mysql-gsviec
+    spec:
+      containers:
+        - image: mysql:5.6
+          name: mysql-gsviec
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql
+                  key: password
+          ports:
+            - containerPort: 3306
+              name: mysql-gsviec
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: gsviec-mysql-volumeclaim
