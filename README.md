@@ -2,6 +2,14 @@
 
 Gsviec is the  simpple clone youtube channel for you. To see how it work just goto [gsviec.com](https://gsviec.com)
 
+### Setup environment to devel
+
+First you need install docker and docker composer, after that just running the command below:
+
+```
+docker-compose up -d
+
+````
 
 
 ### Compile Assets
@@ -22,5 +30,14 @@ After that just running fowllowing:
 
 ```
 grunt
+
+```
+
+### Deploy
+
+If you want to deploy via ansible
+
+```
+ansible-playbook -i hosts/production/inventory deploy.yml
 
 ```

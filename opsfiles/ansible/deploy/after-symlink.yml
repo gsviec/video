@@ -17,7 +17,7 @@
   file:
     src: '{{ release_config_path }}/config.php'
     dest:  '{{ ansistrano_release_path.stdout}}/core/config/config.php'
-    state: link
+    state: file
 
 - name: Change file ownership, group and mode public
   become: true

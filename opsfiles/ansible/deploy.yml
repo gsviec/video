@@ -4,11 +4,11 @@
     ansistrano_deploy_from: "{{ playbook_dir }}/../"
     ansistrano_deploy_to: "/srv/www/gsviec"
     release_var_path: "{{ ansistrano_release_path.stdout }}/var"
-    release_blog_path: /usr/share/nginx/html/gsviec
-    release_dichvu_path: /usr/share/nginx/html/dichvu.gsviec
+    release_blog_path: /srv/www/blog.gsviec.com
+    release_dichvu_path: /srv/www/dichvu.gsviec.com
     release_config_path: "{{ ansistrano_shared_path }}/config"
 
-    # release_upload_path: 
+    # release_upload_path:
     ansistrano_current_dir: "current"
     ansistrano_current_via: "symlink"
     ansistrano_version_dir: "releases" # Releases folder name
@@ -28,5 +28,5 @@
     ansistrano_after_symlink_shared_tasks_file: "{{ playbook_dir }}/deploy/after-symlink-shared.yml"
    roles:
     - { role: carlosbuenosvinos.ansistrano-deploy }
-  
-  
+
+
