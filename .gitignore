@@ -2,7 +2,6 @@ var/key/pk-APKAI6ELILMYQLMJY77Q.pem
 .idea/
 vendor/
 core/config/config.local.php
-core/config/config.php
 apps/frontend/cache/volt/*
 tests/_output
 PayPal.log
@@ -11,7 +10,6 @@ sftp-config.json
 public/.DS_Store
 public/images/.DS_Store
 opsfiles/.vagrant
-/Dockerfile
 /content/tmp/*
 /content/data/*
 /content/themes/*

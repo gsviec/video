@@ -52,6 +52,7 @@ $eventsManager = new EventsManager();
  */
 $config = Config::factory(APPLICATION_ENV);
 
+
 $di->set('config', $config, true);
 
 
