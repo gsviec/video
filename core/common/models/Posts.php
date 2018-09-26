@@ -1018,7 +1018,7 @@ class Posts extends ModelBase
         $posts  = Posts::query()
             ->where($where)
             ->andWhere('categoryId = :id:')
-            ->orderBy('numberReply DESC, modifiedAt DESC')
+            ->orderBy('numberReply DESC, createdAt DESC')
             ->limit($this->getLimit(), $this->getOffset())
             ->bind(['id' => $id])
             ->execute();
@@ -1040,7 +1040,7 @@ class Posts extends ModelBase
             ->columns(['count(*)'])
             ->where($where)
             ->andWhere('categoryId = :id:')
-            ->orderBy('numberReply DESC, modifiedAt DESC')
+            ->orderBy('numberReply DESC, createdAt DESC')
             ->bind(['id' => $id])
             ->execute();
         if ($posts->valid()) {
@@ -1053,7 +1053,7 @@ class Posts extends ModelBase
         $where = $this->getWhereVideo();
         $posts  = Posts::query()
             ->where($where)
-            ->orderBy('numberViews DESC, modifiedAt DESC')
+            ->orderBy('numberViews DESC, createdAt DESC')
             ->limit($this->getLimit(), $this->getOffset())
             ->execute();
         if ($posts->valid()) {
@@ -1086,7 +1086,7 @@ class Posts extends ModelBase
         $where = $this->getWhereVideo();
         $posts  = Posts::query()
             ->where($where)
-            ->orderBy('numberViews DESC, modifiedAt DESC')
+            ->orderBy('numberViews DESC, createdAt DESC')
             ->execute();
         if ($posts->valid()) {
             return $posts;
@@ -1220,7 +1220,7 @@ class Posts extends ModelBase
             ->from(Posts::class)
             ->where($where)
             ->andWhere('categoryId = :id:', ['id' => $id])
-            ->orderBy('numberReply DESC, modifiedAt DESC')
+            ->orderBy('numberReply DESC, createdAt DESC')
             ->limit($this->getLimit())
             ;
         $result = $builder->getQuery()->execute();
