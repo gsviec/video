@@ -148,8 +148,8 @@ return new \Phalcon\Config(
                 'server'   => 'smtp.sendgrid.com',
                 'port'     => '587',
                 'security' => 'tls',
-                'username' => 'duythien',
-                'password' => 'qazwsx2013@',
+                'username' => getenv('MAIL_USERNAME'),
+                'password' => getenv('MAIL_PASSWORD'),
             ]
         ],
         /**
@@ -159,7 +159,7 @@ return new \Phalcon\Config(
          */
         'github'      => [
             'clientId'     => '502507e5c401c3c85de5',
-            'clientSecret' => '0d46324096c4722b8e958db224b7c4a1661705c8',
+            'clientSecret' => '',
             'redirectUri'  => 'https://gsviec.com/oauth/github/access_token',
             'scopes'       => ['user', 'email']
         ],
@@ -194,7 +194,7 @@ return new \Phalcon\Config(
             'analytic' => 'UA-47328645-11',
             'apiKey' => 'AIzaSyAtdRC6W_aa-E1SXpqG69xI4ozGKJfpchg',
             'clientId' => '775228137735-vcda94tvdnkp2hqk7c6gr95plpkhcnks.apps.googleusercontent.com',
-            'clientSecret' => 'MUdoekdiSspZnHAaUVVTzlMp',
+            'clientSecret' => '',
             'redirectUri' => 'https://gsviec.com/oauth/google/access_token'
         ],
         'disqus' => [
