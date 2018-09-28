@@ -17,7 +17,8 @@
   file:
     src: '{{ release_config_path }}/config.php'
     dest:  '{{ ansistrano_release_path.stdout}}/core/config/config.php'
-    state: file
+    state: link
+    force: 'yes'
 
 - name: Change file ownership, group and mode public
   become: true
@@ -35,6 +36,11 @@
   become: true
   file:
     path:  '{{ ansistrano_release_path.stdout}}/var/cache/volt'
+    mode: 0777
+- name: Change file ownership, group and mode cache
+  become: true
+  file:
+    path:  '{{ ansistrano_release_path.stdout}}/var/cache'
     mode: 0777
 - name: Change file ownership, group and mode log
   become: true

@@ -27,6 +27,6 @@
     ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/deploy/after-symlink.yml"
     ansistrano_after_symlink_shared_tasks_file: "{{ playbook_dir }}/deploy/after-symlink-shared.yml"
    roles:
-    - { role: carlosbuenosvinos.ansistrano-deploy }
+    - { role: ansistrano.deploy }
 
 
