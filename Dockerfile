@@ -39,7 +39,7 @@ RUN { \
         echo 'opcache.enable_cli=1'; \
     } > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-RUN a2enmod rewrite expires
+RUN a2enmod rewrite expires headers
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
@@ -77,11 +77,10 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 VOLUME /var/www/html
 WORKDIR /var/www/html
-
-
 ADD . ./
 
 RUN php composer.phar install --no-dev
+RUN rm -rf ./git && rm -rf ./schema
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apache2-foreground"]

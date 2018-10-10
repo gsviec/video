@@ -15,18 +15,18 @@ spec:
         app: php-gsviec
     spec:
       containers:
-        - image: duythien/video
+        - image: duythien/video:pagespeed
           name: php-gsviec
           env:
             - name: DB_HOST
-              value: mysql-gsviec:3306
+              value: mysql:3306
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mysql
                   key: password
             - name: CDN_URL
-              value: https://cdn.lackky.com
+              value: https://cdn.gsviec.com
             - name: DB_NAME
               value: gsviec_video
             - name: DB_USER
