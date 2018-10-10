@@ -66,6 +66,9 @@ RUN set -xe && \
         rm -r \
             ${PWD}/v${PHALCON_VERSION}.tar.gz \
             ${PWD}/cphalcon-${PHALCON_VERSION}
+#Pagespeed
+RUN curl https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb --output pagespeed.deb && \
+    dpkg -i pagespeed.deb && rm pagespeed.deb
 
 #COPY docker-phalcon-* /usr/local/bin/
 RUN docker-php-ext-install pcntl

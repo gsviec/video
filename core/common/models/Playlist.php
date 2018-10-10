@@ -243,10 +243,10 @@ class Playlist extends ModelBase
     /**
      * @return string
      */
-    public function getThumbnail($with = 176, $h = 157)
+    public function getThumbnail()
     {
 
-        return 'images/playlist/' . $this->getImageFilename() .'?w=' . $with .'&h=' .$h;
+        return '/images/playlist/' . $this->getImageFilename();
     }
     /**
      * Allows to query a set of records that match the specified conditions
@@ -361,4 +361,14 @@ class Playlist extends ModelBase
         );
     }
 
+    /**
+     * This method aids in setting up the model with a custom behavior i.e. a different table.
+     * Is only called once during the request.
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        $this->useDynamicUpdate(true);
+        $this->belongsTo('usersId', __NAMESPACE__ . '\Users', 'id', ['alias' => 'user', 'reusable' => true]);
+    }
 }

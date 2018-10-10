@@ -89,6 +89,9 @@ class PlaylistController extends ControllerBase
             'isGoto'   => false,
             'isSeries' => true,
             'playlist' => $playlist,
+            'post'     => $playlist,
+            'url'      => $this->view->getVar('publicUrl') . '/playlist/' . $slug,
+            'author'   => $playlist->user->getFullName(),
             'playlistVideo' => Playlist::getPlayListVideoBySlug($slug)
         ]);
     }

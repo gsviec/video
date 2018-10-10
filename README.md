@@ -10,7 +10,11 @@ First you need install docker and docker composer, after that just running the c
 docker-compose up -d
 
 ````
+Then waiting a moment to download on image, but gsviec video need library php so that you also need running command below
 
+```
+docker-compose exec php php composer.phar install
+````
 
 ### Compile Assets
 
