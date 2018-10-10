@@ -4,11 +4,12 @@
     <!-- Add meta tags to refactor-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=6">
     <meta property="og:site_name" content="{{ name }}" />
     <meta name="keywords" content="{{name}}, Video, Pets">
     <meta property="og:locale" content="vi_VN" />
     <meta property="og:type" content="article" />
+    <meta name="theme-color" content="#317EFB"/>
     {% if post is defined %}
     <meta property="og:title" content="{{ post.title}} - {{name}}" />
     <meta property="og:description" content="{{ truncate(post.content, 300) }}" />
