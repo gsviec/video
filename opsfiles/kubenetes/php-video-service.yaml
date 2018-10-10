@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: php-lackky
-  name: php-lackky
+    app: php-gsviec
+  name: php-gsviec
 spec:
   type: NodePort
   ports:
@@ -11,4 +11,4 @@ spec:
       targetPort: 80
       protocol: TCP
   selector:
-    app: php-lackky
+    app: php-gsviec

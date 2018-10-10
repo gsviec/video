@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: gsviec-mysql-volumeclaim
+  name: mysql-volumeclaim
 spec:
   accessModes:
     - ReadWriteOnce

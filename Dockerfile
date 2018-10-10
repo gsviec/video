@@ -82,6 +82,7 @@ WORKDIR /var/www/html
 ADD . ./
 
 RUN php composer.phar install --no-dev
+RUN chown -R www-data:www-data /var/www/html && chmod 755 -R /var/www/html && rm -rf .git && rm -rf schema
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
