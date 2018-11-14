@@ -17,7 +17,7 @@ services:
      depends_on:
        - db
        - redis-master
-     image: duythien/video:pagespeed-v5
+     image: duythien/video:pagespeed-v6
      build: .
      ports:
        - "80:80"
