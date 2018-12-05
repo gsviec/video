@@ -2810,34 +2810,15 @@ function getCookie(name) {
     var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
     return match ? match[1] : null;
 }
-// function createCookie(name, num) {
-//     var expiryDate = new Date();
-//   		expiryDate.setMonth(expiryDate.getMonth() + num);
-//     document.cookie = name + '=y; expires=' + expiryDate.toGMTString();
-// }
-function createCookie(name, value, expires, path) {
-  var cookie = name + "=" + escape(value) + ";";
- 
-  if (expires) {
-    // If it's a date
-    if(expires instanceof Date) {
-      // If it isn't a valid date
-      if (isNaN(expires.getTime()))
-       expires = new Date();
+function createCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
     }
-    else {
-    	expires = new Date(new Date().getTime() + parseInt(expires) * 1000 * 60 * 60 * 24);
- 	}
- 	cookie += "expires=" + expires.toGMTString() + ";";
-
-  }
- 
-  if (path){
-  	cookie += "path=" + path + ";";
-  }
-  document.cookie = cookie;
+    document.cookie = name + "=" + value + expires + "; path=/";
 }
-
 
 function showModalSubscribe(){
 
@@ -2988,7 +2969,8 @@ $( document ).ready(function() {
     //Set cookies to hide modal subscribe
     $('.js-hide-modal-subscribe').on('click', function(e){
         e.preventDefault();
-        createCookie('hide_subscribe','true',15);
+        console.log(1);
+        createCookie('hide_subscribe','1', 30, '/');
     });
 });
 
