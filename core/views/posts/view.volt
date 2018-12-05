@@ -313,7 +313,20 @@
 
         <!-- right column -->
         <div class="col-lg-4 col-xs-12 col-sm-12">
-
+            <div class="adblock">
+               
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- U1 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6958863237897587"
+                     data-ad-slot="8732176039"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
             {% if listName is defined %}
                 {{ partial('posts/view-playlist', ['listVideo' : listVideo, 'listName' : listName]) }}
             {% else %}
