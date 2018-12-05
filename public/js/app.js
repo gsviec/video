@@ -136,7 +136,8 @@ $( document ).ready(function() {
     //Set cookies to hide modal subscribe
     $('.js-hide-modal-subscribe').on('click', function(e){
         e.preventDefault();
-        createCookie('hide_subscribe','true',15);
+        console.log(1);
+        createCookie('hide_subscribe','1', 30, '/');
     });
 });
 

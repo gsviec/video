@@ -4,7 +4,11 @@
     <div class="row">
         <div class="col-lg-8 col-xs-12 col-sm-12">
             <div class="sv-video video-single-play">
-                    <video id="my-video"></video>
+                   {% if post.techOrder == 'youtube' %}
+                        <iframe width="760" height="300" src="{{ post.getStreamUrl() }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                   {% else %}
+                     <video id="my-video"></video>
+                   {% endif %}
             </div>
             <h1><a href="#">{{post.title}}</a></h1>
             {% set user = post.user %}
@@ -398,52 +402,54 @@
         });
     });
 
-    var url = "{{post.getStreamUrl()}}";
+    var url   = "{{post.getStreamUrl()}}";
+    var type  = "{{post.techOrder}}";
     var title = "{{post.title}}";
 
+    if (type != 'youtube') {
+        var player = jwplayer('my-video');
 
-    var player = jwplayer('my-video');
-
-    player.setup({
-      file: url,
-      sharing: {
-            link: url,
-            heading: title
-      }
-    });
-    jwplayer().on('levels', function() {
-        var index = jwplayer().getQualityLevels();
-        jwplayer().setCurrentQuality(index.lenght);
-    });
-    //Add
-    $('.js-item-playlist').on('click', function (e) {
-        e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url : '/playlist/save',
-            dataType: 'json',
-            data: {
-                'postId': $(this).data('post-id'),
-                'playlistId' : $(this).data('playlist-id')
-            },
-            success: function (data) {
-
-                if (data.hasOwnProperty('error')) {
-                    var $m = data.error.message,
-                        $class = 'alert-danger';
-
-                } else {
-
-                    var $m = data.success.message,
-                        $class = 'alert-success';
-                }
-                var $item = '<div class="alert ' + $class + '">';
-                    $item = $item + '<span class="name">' + $m + '</span></div>';
-
-                $('.add-playlist').after($item);
-            }
+        player.setup({
+          file: url,
+          sharing: {
+                link: url,
+                heading: title
+          }
         });
+        jwplayer().on('levels', function() {
+            var index = jwplayer().getQualityLevels();
+            jwplayer().setCurrentQuality(index.lenght);
+        });
+        //Add
+        $('.js-item-playlist').on('click', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url : '/playlist/save',
+                dataType: 'json',
+                data: {
+                    'postId': $(this).data('post-id'),
+                    'playlistId' : $(this).data('playlist-id')
+                },
+                success: function (data) {
 
-    });
+                    if (data.hasOwnProperty('error')) {
+                        var $m = data.error.message,
+                            $class = 'alert-danger';
+
+                    } else {
+
+                        var $m = data.success.message,
+                            $class = 'alert-success';
+                    }
+                    var $item = '<div class="alert ' + $class + '">';
+                        $item = $item + '<span class="name">' + $m + '</span></div>';
+
+                    $('.add-playlist').after($item);
+                }
+            });
+
+        });
+    }
 </script>
 {% endblock %}

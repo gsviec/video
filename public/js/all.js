@@ -2810,15 +2810,34 @@ function getCookie(name) {
     var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
     return match ? match[1] : null;
 }
-function createCookie(name,value,days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
+// function createCookie(name, num) {
+//     var expiryDate = new Date();
+//   		expiryDate.setMonth(expiryDate.getMonth() + num);
+//     document.cookie = name + '=y; expires=' + expiryDate.toGMTString();
+// }
+function createCookie(name, value, expires, path) {
+  var cookie = name + "=" + escape(value) + ";";
+ 
+  if (expires) {
+    // If it's a date
+    if(expires instanceof Date) {
+      // If it isn't a valid date
+      if (isNaN(expires.getTime()))
+       expires = new Date();
     }
-    document.cookie = name + "=" + value + expires + "; path=/";
+    else {
+    	expires = new Date(new Date().getTime() + parseInt(expires) * 1000 * 60 * 60 * 24);
+ 	}
+ 	cookie += "expires=" + expires.toGMTString() + ";";
+
+  }
+ 
+  if (path){
+  	cookie += "path=" + path + ";";
+  }
+  document.cookie = cookie;
 }
+
 
 function showModalSubscribe(){
 

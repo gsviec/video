@@ -1264,14 +1264,15 @@ class Posts extends ModelBase
      */
     public function getStreamUrl()
     {
+        $filename = explode('&', $this->videoFilename);
         if ($this->techOrder == self::VIDEO_YOUTUBE) {
-            $url = 'https://www.youtube.com/watch?v=' . $this->videoFilename . '&autoplay=1';
+            $url = 'https://www.youtube.com/embed/' . $filename[0] . '?autoplay=1';
         } elseif ($this->techOrder == self::VIDEO_VIMEO) {
 
         } elseif ($this->techOrder == self::VIDEO_GOOGLE_HOST) {
-            $url = 'https://drive.google.com/uc?export=download&id=' . $this->videoFilename;
+            $url = 'https://drive.google.com/uc?export=download&id=' . $filename[0];
         } elseif ($this->techOrder == self::VIDEO_JWPLAYER) {
-            $url = 'http://content.jwplatform.com/videos/' . $this->videoFilename;
+            $url = 'http://content.jwplatform.com/videos/' . $filename[0];
         } else {
             $cf = new CloudFront();
             $url = $cf->signedUrl($this->videoFilename);
