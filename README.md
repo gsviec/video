@@ -45,3 +45,15 @@ If you want to deploy via ansible
 ansible-playbook -i hosts/production/inventory deploy.yml
 
 ```
+### Send new letter
+To test preview before send for all user
+
+```
+php cli SendDigest
+```
+When the template is ok,you can runing agian a command above with option
+
+```
+php cli SendDigest main send
+```
+
