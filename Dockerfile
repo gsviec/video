@@ -81,6 +81,7 @@ ADD . ./
 
 RUN php composer.phar install --no-dev
 RUN rm -rf ./git && rm -rf ./schema
+RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-enabled/000-default.conf
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apache2-foreground"]

@@ -12,12 +12,12 @@ services:
        MYSQL_USER: gsviec
        MYSQL_PASSWORD: gsviec
      ports:
-       - 3306:3306
+       - 3309:3306
     php:
      depends_on:
        - db
        - redis-master
-     image: duythien/video:pagespeed-v5
+     image: duythien/video:v5
      build: .
      ports:
        - "80:80"
@@ -30,6 +30,7 @@ services:
        DB_NAME: gsviec
        APPLICATION_ENV: development
        REDIS_HOST: redis-master
+       APPLICATION_ENV:  development
     phpmyadmin:
       restart: 'no'
       image: phpmyadmin/phpmyadmin:4.6
