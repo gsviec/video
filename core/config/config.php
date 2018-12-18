@@ -122,7 +122,7 @@ return new \Phalcon\Config(
                     'uniqueId' => 'video_gsviec_',
                     'host' => getenv('REDIS_HOST'),
                     'port' => 6379,
-                    //'auth' => 'foobared',
+                    'auth' => getenv('REDIS_PASSWORD'),
                     'persistent' => true,
                     'lifetime' => 120000000,
                     'prefix' => 'gsviec_',
