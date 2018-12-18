@@ -124,7 +124,7 @@ class ControllerBase extends Controller
                 ->addCss('/css/all.min.css')
             ;
             $this->assets
-                ->addJs('https://content.jwplatform.com/libraries/zVSdRWQd.js', false)
+                #->addJs('https://content.jwplatform.com/libraries/zVSdRWQd.js', false)
                 ->addJs('/js/all.min.js', false)
             ;
         } else {

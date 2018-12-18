@@ -4,7 +4,7 @@
 
         <h3>{{ name }}<span>
                 <a href="/">
-                    <img class="logo" src="/images/logo.png">
+                    <img class="logo" src="/images/logo.png" width="100" height="100">
                 </a>
             </span>
         </h3>
@@ -33,12 +33,12 @@
 
         <div>
             <i class="fa fa-phone"></i>
-            <p>+841688397026</p>
+            <p>+840388397026</p>
         </div>
 
         <div>
             <i class="fa fa-envelope"></i>
-            <p><a href="mailto:hello@gmail.com">hello@gsviec.com</a></p>
+            <p><a href="mailto:hello@gsviec.com">hello@gsviec.com</a></p>
         </div>
 
     </div>

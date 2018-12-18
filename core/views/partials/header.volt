@@ -4,7 +4,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-1 col-sm-2 col-xs-2">
-                        <a class="navbar-brand" href="/"><img src="/images/logo.png" alt="Project name" class="logo" /></a>
+                        <a class="navbar-brand" href="/">
+                            <img src="/images/logo.png" alt="Gsviec" class="logo" width="100" height="100"/>
+                        </a>
                     </div>
                     <div class="col-lg-3 col-sm-10 col-xs-10">
                         <ul class="list-inline menu">
@@ -64,7 +66,7 @@
                     {% else %}
                         <div class="col-lg-2 col-sm-4  col-xs-8">
                             <div class="avatar sub-header pull-left">
-                                <img src="/images/avatar.png" alt="avatar" />
+                                <img src="/images/avatar.png" alt="avatar" width="100" height="100"/>
                                 <span class="status"></span>
                             </div>
                             <div class="selectuser pull-left">

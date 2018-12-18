@@ -17,7 +17,7 @@ services:
      depends_on:
        - db
        - redis-master
-     image: duythien/video:v5
+     image: duythien/video:v6
      build: .
      ports:
        - "80:80"
@@ -28,9 +28,8 @@ services:
        DB_USER: root
        DB_PASSWORD: gsviec
        DB_NAME: gsviec
-       APPLICATION_ENV: development
+       APPLICATION_ENV: production
        REDIS_HOST: redis-master
-       APPLICATION_ENV:  development
     phpmyadmin:
       restart: 'no'
       image: phpmyadmin/phpmyadmin:4.6
