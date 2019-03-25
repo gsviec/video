@@ -26,7 +26,7 @@
     <meta property="og:image:height" content="552" />
     {% else %}
     <meta name="description" content="Gsviec.com được thành lập vào năm 2017, là một trong những website tiên phong trong việc giảng dạy và đào tạo trong lĩnh vực thiết kế và lập trình web miễn phí tại Việt Nam."/>
-    <meta property="og:description" content="sviec.com được thành lập vào năm 2017, là một trong những website tiên phong trong việc giảng dạy và đào tạo trong lĩnh vực thiết kế và lập trình web miễn phí tại Việt Nam." />
+    <meta property="og:description" content="gsviec.com được thành lập vào năm 2017, là một trong những website tiên phong trong việc giảng dạy và đào tạo trong lĩnh vực thiết kế và lập trình web miễn phí tại Việt Nam." />
     <meta name="author" content="{{name}} Team" />
     <meta property="og:title" content="{{ name }}">
     <link rel="canonical" href="{{ canonical }}" />
@@ -66,9 +66,7 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-{% if !isLogin() %}
-{{partial('partials/modal-subscribe')}}
-{% endif %}
+
 {{this.assets.outputJs()}}
 
 {% block scripts%}{% endblock %}
