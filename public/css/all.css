@@ -4624,7 +4624,7 @@ img.avatar-user, img.channel-view {
   .videolist .videoitem {
     width: 25%
   }
-  
+
 }
 .video-single-play {
   position: relative;
@@ -4638,4 +4638,7 @@ img.avatar-user, img.channel-view {
   left: 0;
   width: 100%;
   height: 100%;
+}
+.google-ads-text a {
+    padding-left: 28px;
 }
