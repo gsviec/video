@@ -53,7 +53,7 @@ RUN pecl install mongodb && docker-php-ext-enable mongodb \
 && pecl install xdebug && docker-php-ext-enable xdebug \
 && pecl install redis && docker-php-ext-enable redis
 
-RUN apt-get install -y libgmp-dev && docker-php-ext-configure gmp && docker-php-ext-install gmp bcmath
+RUN apt-get install -y git libgmp-dev && docker-php-ext-configure gmp && docker-php-ext-install gmp bcmath
 
 ARG PHALCON_VERSION=3.4.0
 ARG PHALCON_EXT_PATH=php7/64bits

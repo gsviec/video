@@ -17,7 +17,7 @@ services:
      depends_on:
        - db
        - redis-master
-     image: duythien/video:v6
+     image: gsviec/video
      build: .
      ports:
        - "80:80"
