@@ -91,8 +91,13 @@ $router->add('/language/{code}', [
     'controller' => 'language',
     'action' => 'index'
 ]);
+$router->add('/pages/service', [
+    'controller' => 'pages',
+    'action' => 'service'
+]);
 $router->add('/pages/{router}', [
     'controller' => 'pages',
     'action' => 'index'
 ]);
+
 

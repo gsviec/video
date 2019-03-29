@@ -11,9 +11,8 @@
                     <div class="col-lg-3 col-sm-10 col-xs-10">
                         <ul class="list-inline menu">
                             <li><a class="active" href="/blog">{{ t('Blog') }}</a></li>
-                            <li><a class="active" href="/discussions">{{ t('Forum') }}</a></li>
-<!--                             <li><a href="/categories">{{ t('Categories') }}</a></li>
- -->                            <li><a href="/playlist">{{ t('Series') }}</a></li>
+                            <li><a class="active" href="/pages/service">{{ t('Dịch vụ') }}</a></li>
+                            <li><a href="/playlist">{{ t('Series') }}</a></li>
                         </ul>
                     </div>
                     <div class="visible-xs visible-sm clearfix"></div>

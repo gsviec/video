@@ -37,7 +37,17 @@ class PagesController extends ControllerBase
         if (empty($router)) {
             $router = 'index';
         }
+        $this->view->isGoto = false;
+        return $this->view->pick('pages/' . $router);
+    }
+    public function serviceAction()
+    {
+        $router = $this->dispatcher->getParam('router');
 
+        if (empty($router)) {
+            $router = 'index';
+        }
+        $this->view->isGoto = false;
         return $this->view->pick('pages/' . $router);
     }
 }

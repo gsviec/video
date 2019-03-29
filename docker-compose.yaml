@@ -28,7 +28,7 @@ services:
        DB_USER: root
        DB_PASSWORD: gsviec
        DB_NAME: gsviec
-       APPLICATION_ENV: production
+       APPLICATION_ENV: local
        REDIS_HOST: redis-master
     phpmyadmin:
       restart: 'no'
