@@ -68,7 +68,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="form_message">Message *</label>
-                                    <textarea id="form_message" name="message" class="form-control" placeholder="Message for me *" rows="4" required="required" data-error="Please, leave us a message."></textarea>
+                                    <textarea id="form_message" name="content" class="form-control" placeholder="Message for me *" rows="4" required="required" data-error="Please, leave us a message."></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">

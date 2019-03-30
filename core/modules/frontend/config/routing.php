@@ -99,5 +99,9 @@ $router->add('/pages/{router}', [
     'controller' => 'pages',
     'action' => 'index'
 ]);
+$router->add('/service', [
+    'controller' => 'pages',
+    'action' => 'service'
+]);
 
 
