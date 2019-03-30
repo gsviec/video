@@ -37,7 +37,26 @@ class PagesController extends ControllerBase
         if (empty($router)) {
             $router = 'index';
         }
-
+        $this->view->isGoto = false;
         return $this->view->pick('pages/' . $router);
+    }
+    public function serviceAction()
+    {
+        if ($this->request->isPost()) {
+            $name   = $this->request->get('name') . ' ' . $this->request->get('surename');
+            $email  = $this->request->get('email');
+            $content = $this->request->get('content');
+            $params = [
+                'name'    => $name,
+                'content' => $content,
+                'email'   => $email
+            ];
+
+            $this->mail->send('fcduythien@gmail.com', 'contact', $params);
+            $this->flashSession->success(t('Thank you for subscribing to our newsletter'));
+            return $this->currentRedirect();
+        }
+        $this->view->isGoto = false;
+        return $this->view->pick('pages/service');
     }
 }
