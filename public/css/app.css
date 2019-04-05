@@ -4552,6 +4552,6 @@ img.avatar-user, img.channel-view {
   padding: 12px;
 }
 .navbar-default {
-  background: #ffffff;
-  border: none;
+  background: #ffffff !important;
+  border: none !important;
 }
