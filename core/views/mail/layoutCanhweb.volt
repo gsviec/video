@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Gsviec</title>
+<title>Canhweb</title>
 
 <style type="text/css">
     /* -------------------------------------
@@ -291,7 +291,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 
                                                 <h5 class="">Liên hệ:</h5>
                                                 <p>Phone: <strong>0388397026</strong><br/>
-                Email: <strong><a href="emailto:hello@gsviec.com">hello@gsviec.com</a></strong></p>
+                Email: <strong><a href="emailto:hello@gsviec.com">hello@canhweb.com</a></strong></p>
 
                                             </td>
                                         </tr>
@@ -325,8 +325,8 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
                         <tr>
                             <td align="center">
                                 <p>
-                                    <a href="https://gsviec.com/page/tos">Terms</a> |
-                                    <a href="https://gsviec.com/page/tos">Gsviec Team</a> |
+                                    <a href="https://Canhweb.com/page/tos">Terms</a> |
+                                    <a href="https://Canhweb.com/page/tos">Canhweb Team</a> |
                                     {% if unLink is defined %}
                                     <a href="{{unLink}}"><unsubscribe>Unsubscribe</unsubscribe></a>
                                     {% endif %}
