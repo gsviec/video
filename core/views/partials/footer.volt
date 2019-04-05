@@ -2,9 +2,9 @@
 
     <div class="footer-left">
 
-        <h3>{{ name }}<span>
+        <h3><span>
                 <a href="/">
-                    <img class="logo" src="/images/logo.png" width="100" height="100">
+                    <img class="logo" src="/images/logo.png?v1">
                 </a>
             </span>
         </h3>

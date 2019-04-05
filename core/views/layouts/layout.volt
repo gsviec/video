@@ -41,8 +41,6 @@
         var controller  = '{{ controller }}';
         var action      = '{{ action }}';
         var gAnalytic   = '{{ gAnalytic }}';
-        var facebookApp   = '{{ facebookApp }}';
-
     </script>
 </head>
 
