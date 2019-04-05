@@ -47,9 +47,7 @@
 
         <p class="footer-company-about">
             <span>{{t('About')}} {{ name }}</span>
-            Gsviec.com được thành lập vào năm 2017,
-            là một trong những website tiên phong trong việc giảng
-            dạy và đào tạo trong lĩnh vực thiết kế và lập trình web miễn phí tại Việt Nam.
+            Gsviec.com được thành lập vào năm 2017, là một trong những website tiên phong trong việc giảng dạy và đào tạo trong lĩnh vực thiết kế và lập trình web tại Việt Nam.
         </p>
 
         <div class="footer-icons">

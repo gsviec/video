@@ -359,6 +359,7 @@ label.clipboard:hover .btn-copy {
 .login-window button {
   padding-top: 22px;
   padding-bottom: 16px;
+  width: 100%;
 }
 input:focus,
 select:focus,
@@ -4519,4 +4520,7 @@ img.avatar-user, img.channel-view {
   left: 0;
   width: 100%;
   height: 100%;
+}
+#form_need {
+  padding: 12px;
 }
