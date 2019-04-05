@@ -1655,7 +1655,7 @@ ul.list-inline li a.color-active {
   font-size: 15px;
   margin-top: 5px;
 }
-/* 
+/*
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
   ##Device = Low Resolution Tablets, Mobiles (Landscape)
@@ -1668,7 +1668,7 @@ ul.list-inline li a.color-active {
   .logo {
       margin-left: -28px;
   }
-  
+
 
 }
 @media (min-width: 768px) and (max-width: 2365px) {
@@ -4548,6 +4548,6 @@ img.avatar-user, img.channel-view {
   padding: 12px;
 }
 .navbar-default {
-  background: #ffffff;
-  border: none;
+  background: #ffffff !important;
+  border: none !important;
 }
