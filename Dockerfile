@@ -80,7 +80,7 @@ WORKDIR /var/www/html
 ADD . ./
 
 RUN php composer.phar install --no-dev
-RUN rm -rf ./git && rm -rf ./schema && rm -rf opsfile && rm -rf composer.phar
+RUN rm -rf ./git && rm -rf ./schema && rm -rf opsfile && rm -rf composer.phar && rm -rf node_modules
 RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-enabled/000-default.conf
 
 ENTRYPOINT ["docker-entrypoint.sh"]
