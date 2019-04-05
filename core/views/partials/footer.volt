@@ -18,10 +18,10 @@
             ·
             <a href="#">Faq</a>
             ·
-            <a href="/pages/about">Contact</a>
+            <a href="/service">Contact</a>
         </p>
 
-        <p class="footer-company-name">{{ name }} &copy; 2017</p>
+        <p class="footer-company-name">{{ name }} &copy; 2017 - {{ date('Y')}}</p>
     </div>
 
     <div class="footer-center">
