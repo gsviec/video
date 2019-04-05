@@ -1777,6 +1777,7 @@ ul.list-inline li a.color-active {
 /*
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
+
   ##Device = Low Resolution Tablets, Mobiles (Landscape)
   ##Screen = B/w 481px to 767px
 */
@@ -4639,7 +4640,7 @@ img.avatar-user, img.channel-view {
   .videolist .videoitem {
     width: 25%
   }
-
+}
 
 #navbar {
   width: 100%;
@@ -4671,6 +4672,6 @@ img.avatar-user, img.channel-view {
   padding: 12px;
 }
 .navbar-default {
-  background: #ffffff;
-  border: none;
+  background: #ffffff !important;
+  border: none !important;
 }
