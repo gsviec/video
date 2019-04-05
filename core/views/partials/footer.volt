@@ -2,9 +2,9 @@
 
     <div class="footer-left">
 
-        <h3>{{ name }}<span>
+        <h3><span>
                 <a href="/">
-                    <img class="logo" src="/images/logo.png" width="100" height="100">
+                    <img class="logo" src="/images/logo.png?v1">
                 </a>
             </span>
         </h3>
@@ -47,9 +47,7 @@
 
         <p class="footer-company-about">
             <span>{{t('About')}} {{ name }}</span>
-            Gsviec.com được thành lập vào năm 2017,
-            là một trong những website tiên phong trong việc giảng
-            dạy và đào tạo trong lĩnh vực thiết kế và lập trình web miễn phí tại Việt Nam.
+            Gsviec.com được thành lập vào năm 2017, là một trong những website tiên phong trong việc giảng dạy và đào tạo trong lĩnh vực thiết kế và lập trình web tại Việt Nam.
         </p>
 
         <div class="footer-icons">
