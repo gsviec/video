@@ -60,8 +60,9 @@
                                     </div>
                                 </div>
                             {% else %}
-                                <div class="avatar sub-header pull-right hidden-xs">
+                                <div class="avatar sub-header pull-right hidden-xs ">
                                     <img class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="/images/avatar.png" alt="avatar" width="100" height="100" />
+                                    <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Xin chào<span class="caret"></span></a>
                                     <span  class="status dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ></span>
                                         
                                         <ul class="dropdown-menu">
