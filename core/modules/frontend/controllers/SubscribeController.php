@@ -220,9 +220,11 @@ class SubscribeController extends ControllerBase
             echo $this->respondWithError('Data was not success', 404);
             return 0;
         }
-       
+
         $params = [
-            'domain'=> $this->request->getPost('domain')
+            'domain'=> $this->request->getPost('domain'),
+            'describe' => $this->request->getPost('describe'),
+            'subject' => 'CanhWeb'
         ];
         $this->mail->send($email, 'coming-soon', $params);
 
