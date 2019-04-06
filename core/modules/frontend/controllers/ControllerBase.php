@@ -121,7 +121,7 @@ class ControllerBase extends Controller
         if (APPLICATION_ENV == ENV_PRODUCTION ) {
             $this->assets
                 ->addCss('https://fonts.googleapis.com/css?family=Hind:400,300,500,600,700', false)
-                ->addCss('/css/all.min.css')
+                ->addCss('/css/all.min.css?v7')
             ;
             $this->assets
                 #->addJs('https://content.jwplatform.com/libraries/zVSdRWQd.js', false)
