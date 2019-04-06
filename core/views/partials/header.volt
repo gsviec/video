@@ -19,7 +19,7 @@
                                 <li class="hidden-lg hidden-md hidden-sm"><a href="/signup">{{ t('Sign up') }}</a></li>
                             </ul>
                             <div>
-                                <form  class="form-inline my-2 my-lg-0" action="/search" method="GET">
+                                <form  id="form-search-header" action="/search" method="GET">
                                 <div class="topsearch">
                                     <div class="input-group">
                                         <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"></i></span>
@@ -40,13 +40,10 @@
                             </div>
                             {% set user = this.auth.getUser() %}
                             {% if user == true %}
-                                <div class="avatar pull-left">
-                                    <img src="{{ user.getAvatar() }}" alt="avatar" class="avatar-user"/>
-                                    <span class="status"></span>
-                                </div>
-                                <div class="selectuser pull-left">
-                                    <div class="btn-group pull-right dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{ user.getFullname() }}<span class="caret"></span></button>
+                                <div class="avatar sub-header pull-right hidden-xs">
+                                    <img src="{{ user.getAvatar() }}" alt="avatar" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.getFullname() }}<span class="caret"></span></a>
+                                    <span  class="status dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ></span>
                                         <ul class="dropdown-menu">
                                             {% if user.channel %}
                                             <li><a href="/channels/edit/{{ user.channel.uniqid }}">{{ t('Edit channel') }}</a></li>
@@ -60,17 +57,16 @@
                                     </div>
                                 </div>
                             {% else %}
-                                <div class="avatar sub-header pull-right hidden-xs ">
+                                <div class="avatar sub-header pull-right hidden-xs">
                                     <img class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="/images/avatar.png" alt="avatar" width="100" height="100" />
                                     <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Xin chào<span class="caret"></span></a>
                                     <span  class="status dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ></span>
-                                        
                                         <ul class="dropdown-menu">
                                             <li><a href="/login">{{ t('Login') }}</a></li>
                                             <li><a href="/signup">{{ t('Sign up') }}</a></li>
                                         </ul>
                                 </div>
-                                
+
                             {% endif %}
                     </div>
             </div>
