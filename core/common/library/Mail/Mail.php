@@ -77,6 +77,12 @@ class Mail extends Component
             ->setTo($to)
             ->setFrom([$mail->fromEmail => $mail->fromName])
             ->setBody($body, 'text/html');
+        if ($templateKey == 'coming-soon') {
+            $message
+            ->setTo($to)
+            ->setFrom(['canhweb@no-reply' => 'CanhWeb'])
+            ->setBody($body, 'text/html');
+        }
         if (!$this->transport) {
             $transport = new Swift_SmtpTransport($mail->smtp->server, $mail->smtp->port);
             $transport->setUsername($mail->smtp->username);
