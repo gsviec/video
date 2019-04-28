@@ -184,4 +184,58 @@ class SubscribeController extends ControllerBase
         $this->flashSession->success(t('Unsubscribe Successful'));
         return $this->indexRedirect();
     }
+    /**
+     * @todo   implement
+     * @return mixed
+     */
+    public function comingAction()
+    {
+        if (!$this->request->isPost()) {
+            return false;
+        }
+        $this->view->disable();
+
+        $email = $this->request->getPost('email');
+        if (!$email) {
+            echo $this->respondWithError('Please input your Email', 404);
+            return 0;
+
+        }
+        $subscribe = Subscribe::findFirstByEmail($email);
+        if (!$subscribe) {
+            $subscribe = new Subscribe();
+            $subscribe->setEmail($email);
+        }
+        $fullName = null;
+        if (isset($_POST['name'])) {
+            $subscribe->setName($_POST['name']);
+            $fullName = $_POST['name'];
+        }
+        $subscribe->setStatus('Y');
+
+        if (!$subscribe->save()) {
+            foreach ($subscribe->getMessages() as $message) {
+                $this->logger->error($message);
+            }
+            echo $this->respondWithError('Data was not success', 404);
+            return 0;
+        }
+
+        $params = [
+            'domain'=> $this->request->getPost('domain'),
+            'describe' => $this->request->getPost('describe'),
+            'subject' => 'CanhWeb'
+        ];
+        $this->mail->send($email, 'coming-soon', $params);
+
+        if ($this->request->isAjax()) {
+            //Ajax send from blog wordpress
+            if (isset($_POST['Box'])) {
+                echo $this->respondWithArray(['status' => '200', 'html' =>t('Thank you for subscribing to our newsletter') ]);
+                return 1;
+            }
+            echo $this->respondWithSuccess(t('Thank you for subscribing to our newsletter'));
+            return 1;
+        }
+    }
 }

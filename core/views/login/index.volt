@@ -44,11 +44,6 @@
                         <div class="google-login form-group">
                             <a href="/oauth/google" class="btn btn-cv1"><span class="fa fa-google-plus"></span>Login with google</a>
                         </div>
-
-                        <div class="google-login form-group">
-                            <a href="/oauth/facebook" class="btn btn-cv1"><span class="fa fa-facebook"></span>Login with facebook</a>
-                        </div>
-
                         <div class="row">
                             <div class="col-lg-12 forgottext">
                                 <a href="/forgotpassword">Forgot Username or Password?</a>
