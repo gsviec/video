@@ -143,7 +143,7 @@ return new \Phalcon\Config(
         'mail'        => [
             'templatesDir' => 'mail/',
             'fromName'     => 'Gsviec',
-            'fromEmail'    => 'gsviec@no-reply',
+            'fromEmail'    => 'no-reply@gsviec.com',
             'smtp'         => [
                 'server'   => 'smtp.sendgrid.com',
                 'port'     => '587',
@@ -192,9 +192,9 @@ return new \Phalcon\Config(
          */
         'google' => [
             'analytic' => 'UA-47328645-11',
-            'apiKey' => 'AIzaSyAtdRC6W_aa-E1SXpqG69xI4ozGKJfpchg',
-            'clientId' => '775228137735-vcda94tvdnkp2hqk7c6gr95plpkhcnks.apps.googleusercontent.com',
-            'clientSecret' => '',
+            'apiKey' => get('GOOGLE_API'),
+            'clientId' => getenv('GOOGLE_ID'),
+            'clientSecret' => getenv('GOOGLE_SECRET'),
             'redirectUri' => 'https://gsviec.com/oauth/google/access_token'
         ],
         'disqus' => [
@@ -213,7 +213,7 @@ return new \Phalcon\Config(
         ],
 
         'resque' => [
-            'REDIS_BACKEND'     => '130.211.136.94:6379',    // Set Redis Backend Info
+            'REDIS_BACKEND'     => getenv('REDIS_HOST'),    // Set Redis Backend Info
             'REDIS_BACKEND_DB'  => '0',                 // Use Redis DB 0
             'COUNT'             => '1',                 // Run 1 worker
             'INTERVAL'          => '5',                 // Run every 5 seconds
@@ -224,15 +224,15 @@ return new \Phalcon\Config(
         ],
         'amazon' => [
              's3' => [
-                 'key' => 'xx',
-                 'secret' => 'xx',
-                 'region'=>'us-east-1', //'ap-northeast-1',
-                 'bucket' => 'video.youtube'
+                 'key' => getenv('AWS_KEY'),
+                 'secret' => getenv('AWS_SECRET'),
+                 'region' => getenv('AWS_REGION'),
+                 'bucket' => getenv('AWS_BUCKET')
              ],
             'cloudFront' => [
-                'url' => 'http://d9a4mhyi961pk.cloudfront.net',
-                'keyId' => 'APKAJJVYWXGI7I2GYH2A', //cloudfront key pair id
-                'secret' => var_path('key/pk-x.pem')
+                'url'    => getenv('CF_URL'),
+                'keyId'  => getenv('CF_KEY'),
+                'secret' => getenv('CF_SECRET_PATH') //var_path('key/pk-x.pem')
             ]
         ],
     ]
