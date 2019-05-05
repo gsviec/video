@@ -7,7 +7,14 @@
                    {% if post.techOrder == 'youtube' %}
                         <iframe width="760" height="300" src="{{ post.getStreamUrl() }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                    {% else %}
-                     <video id="my-video"></video>
+                        {% if isPremium == true %}
+                            <video class='vjs-matrix video-js' controls preload='auto' width="100%" height="100%">
+                                <source src="{{ url }}" type='video/mp4'>
+                            </video>
+                        {% else %}
+
+
+                        {% endif %}
                    {% endif %}
             </div>
             <h1><a href="#">{{post.title}}</a></h1>

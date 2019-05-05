@@ -23,7 +23,7 @@ class UploadVideoTask extends Task
         Output::stdout('Send a video to amazon s3');
         $video = new UploadVideo();
         try {
-            var_dump($video->handel());
+            var_dump($video->perform());
         } catch (Exception $e) {
             echo $e->getMessage(), PHP_EOL;
             echo $e->getTraceAsString();

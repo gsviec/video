@@ -192,7 +192,7 @@ return new \Phalcon\Config(
          */
         'google' => [
             'analytic' => 'UA-47328645-11',
-            'apiKey' => get('GOOGLE_API'),
+            'apiKey' => getenv('GOOGLE_API'),
             'clientId' => getenv('GOOGLE_ID'),
             'clientSecret' => getenv('GOOGLE_SECRET'),
             'redirectUri' => 'https://gsviec.com/oauth/google/access_token'

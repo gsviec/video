@@ -21,7 +21,7 @@ class PostsPlaylist extends ModelBase
      * @var integer
      */
     protected $playlistId;
-    
+
 
     /**
      * Method to set the value of field id
@@ -174,6 +174,16 @@ class PostsPlaylist extends ModelBase
             'playlistId' => 'playlistId',
             'createdAt' => 'createdAt'
         );
+    }
+
+    public static function getPlaylistIdByPostId($id)
+    {
+        $results = PostsPlaylist::findByPostId($id);
+        $playlistId = [];
+        foreach ($results as $key => $result) {
+            $playlistId[] = $result->playlistId;
+        }
+        return $playlistId;
     }
 
 }
