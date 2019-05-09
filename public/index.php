@@ -50,7 +50,6 @@ try {
 
     echo $application->handle()->getContent();
 } catch (Exception $e) {
-    var_dump($e->getMessage());
     $logger = $di->get('logger');
     $logger->error($e->getMessage());
     $logger->error($e->getTraceAsString());
