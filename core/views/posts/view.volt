@@ -12,7 +12,8 @@
                                 <source src="{{ url }}" type='video/mp4'>
                             </video>
                         {% else %}
-
+                            <p> {{ playlist.content }}</p>
+                            <p> Video này thuộc phần nâng cao của khóa học {{ playlist.title }} do đó bạn cần phải thanh toán trước khi xem video này, để thanh toán khóa học này bạn chỉ việc click link này. https://gsviec.com/shop/product/{{ playlist.slug }}</p>
 
                         {% endif %}
                    {% endif %}
