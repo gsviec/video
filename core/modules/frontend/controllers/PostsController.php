@@ -25,6 +25,7 @@ use Phanbook\Models\Users;
 use Phanbook\Models\ModelBase;
 use Phanbook\Models\PostsViews;
 use Phanbook\Models\PostsHistory;
+use Phanbook\Models\PostsPlaylist;
 use Phanbook\Frontend\Forms\ReplyForm;
 use Phanbook\Frontend\Forms\CommentForm;
 use Phanbook\Frontend\Forms\PostsForm;
@@ -273,10 +274,6 @@ class PostsController extends ControllerBase
             $this->flashSession->error('The Post is deleted');
             return $this->indexRedirect();
         }
-        if (!$post->isPublish()) {
-            $this->flashSession->error('The Post have not publish');
-            return $this->indexRedirect();
-        }
         //@TODO add redis
         $params = array(
             'postsId = ?0 AND ipaddress = ?1',
@@ -339,8 +336,25 @@ class PostsController extends ControllerBase
             'nextVideo' => $nextVideo,
             'recommendVideo' => $post->getNewVideos(),
             'url'=> $this->getUrlVideo($id),
-            'author' => $post->user->getFullName()
+            'author' => $post->user->getFullName(),
+            'isPremium' => false
         ]);
+
+
+        if ($post->isPrivate()) {
+            $playlistId = PostsPlaylist::getPlaylistIdByPostId($id);
+
+            if (count(array_intersect($playlistId, $this->auth->getPlaylisId())) > 0) {
+                $this->view->isPremium = true;
+                $this->assets->addJs('https://vjs.zencdn.net/7.5.4/video.js', false)
+                ;
+                $this->assets->addCss('/css/video.css');
+                $url = $this->storage->createPresignedRequest('SampleVideo_1280x720_1mb.mp4');
+                $this->view->url = $url;
+                //d($url);
+            }
+        }
+       // d($post->toArray());
 
     }
 

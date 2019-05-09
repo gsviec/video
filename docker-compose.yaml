@@ -30,6 +30,8 @@ services:
        DB_NAME: gsviec
        APPLICATION_ENV: local
        REDIS_HOST: redis-master
+     env_file:
+        - .env
     phpmyadmin:
       restart: 'no'
       image: phpmyadmin/phpmyadmin:4.6

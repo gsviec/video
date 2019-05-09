@@ -82,6 +82,23 @@ class S3
             d($e);
         }
     }
+    public function createPresignedRequest($pathToFile)
+    {
+        try {
+            //Creating a presigned URL
+            $cmd = $this->client->getCommand('GetObject', [
+                'Bucket' => $this->config->bucket,
+                'Key' => $pathToFile
+            ]);
+
+            $request = $this->client->createPresignedRequest($cmd, '+20 minutes');
+            // Get the actual presigned-url
+            return (string)$request->getUri();
+
+        } catch (S3Exception $e) {
+            d($e);
+        }
+    }
 
     /**
      * @return S3Client

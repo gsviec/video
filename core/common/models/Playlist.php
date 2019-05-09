@@ -371,4 +371,17 @@ class Playlist extends ModelBase
         $this->useDynamicUpdate(true);
         $this->belongsTo('usersId', __NAMESPACE__ . '\Users', 'id', ['alias' => 'user', 'reusable' => true]);
     }
+
+    /**
+     * @param $slug
+     * @return null | int
+     */
+    public static function getIdBySlug($slug)
+    {
+        $result = Playlist::findFirstBySlug($slug);
+        if (empty($result)) {
+            return null;
+        }
+        return $result->id;
+    }
 }
