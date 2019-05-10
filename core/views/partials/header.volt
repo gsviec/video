@@ -14,7 +14,7 @@
                             <ul class="nav navbar-nav list-inline menu">
                                 <li><a href="/blog">{{ t('Blog') }}</a></li>
                                 <li><a href="/shop">{{ t('Cửa hàng') }}</a></li>
-                                <li><a href="/job">{{ t(' Việc làm') }}</a></li>
+                                <li><a href="/jobs">{{ t(' Việc làm') }}</a></li>
                                 <li><a href="/service">{{ t('Dịch vụ') }}</a></li>
                                 <li><a href="/playlist">{{ t('Series') }}</a></li>
 
