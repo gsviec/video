@@ -1,4 +1,4 @@
-FROM php:7.2-apache
+FROM php:7.3-apache
 
 # install the PHP extensions we need
 RUN set -ex; \
@@ -9,6 +9,9 @@ RUN set -ex; \
     apt-get install -y --no-install-recommends \
         libjpeg-dev \
         libpng-dev \
+        git \
+        libgmp-dev \
+        libzip-dev \
     ; \
     \
     docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
@@ -50,12 +53,11 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd mysqli pdo pdo_mysql
 
 RUN pecl install mongodb && docker-php-ext-enable mongodb \
-&& pecl install xdebug && docker-php-ext-enable xdebug \
 && pecl install redis && docker-php-ext-enable redis
 
 RUN apt-get install -y git libgmp-dev && docker-php-ext-configure gmp && docker-php-ext-install gmp bcmath
 
-ARG PHALCON_VERSION=3.4.0
+ARG PHALCON_VERSION=3.4.3
 ARG PHALCON_EXT_PATH=php7/64bits
 RUN set -xe && \
         # Compile Phalcon
@@ -70,6 +72,7 @@ RUN set -xe && \
 RUN curl https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb --output pagespeed.deb && \
     dpkg -i pagespeed.deb && rm pagespeed.deb
 
+COPY opsfiles/php.ini /usr/local/etc/php/
 #COPY docker-phalcon-* /usr/local/bin/
 RUN docker-php-ext-install pcntl
 COPY docker-entrypoint.sh /usr/local/bin/
