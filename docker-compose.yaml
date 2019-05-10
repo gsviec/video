@@ -17,7 +17,7 @@ services:
      depends_on:
        - db
        - redis-master
-     image: gsviec/video
+     image: gsviec/video:v9
      build: .
      ports:
        - "80:80"
