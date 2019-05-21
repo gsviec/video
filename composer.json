@@ -25,7 +25,6 @@
         "aws/aws-sdk-php" : "^3.0",
         "chrisboulton/php-resque" : "dev-master",
         "league/oauth2-google": "^2.0",
-        "league/oauth2-facebook": "^2.0"
-
+        "google/recaptcha": "~1.1"
     }
 }

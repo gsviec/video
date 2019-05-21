@@ -30,6 +30,8 @@ services:
        DB_NAME: gsviec
        APPLICATION_ENV: local
        REDIS_HOST: redis-master
+       SITE_KEY: 6LcanqQUAAAAAH6cVI4T7qUSmGIcHR8v3K3p1eCJ
+       SECRET_KEY: 6LcanqQUAAAAAMkTQzBrJR_eWiEuLM-sF4OxvYdQ
      env_file:
         - .env
     phpmyadmin:

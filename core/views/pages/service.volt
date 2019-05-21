@@ -72,6 +72,10 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
+                                <div class="form-group g-recaptcha" data-sitekey="{{ siteKey }}"></div>
+                            </div>
+                            <br/>
+                            <div class="col-md-12">
                                 <input type="submit" class="btn btn-success btn-send" value="Send message">
                             </div>
                         </div>
@@ -82,3 +86,10 @@
         </div>
     </div>
 {% endblock %}
+
+{% block scripts%}
+
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<{% endblock %}
