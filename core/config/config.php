@@ -235,5 +235,9 @@ return new \Phalcon\Config(
                 'secret' => getenv('CF_SECRET_PATH') //var_path('key/pk-x.pem')
             ]
         ],
+        'reCaptcha' => [
+            'siteKey' => getenv('SITE_KEY'),
+            'secretKey'  => getenv('SECRET_KEY')    
+        ],
     ]
 );

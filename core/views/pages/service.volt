@@ -73,6 +73,10 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
+                                <div class="form-group g-recaptcha" data-sitekey="{{ siteKey }}"></div>
+                            </div>
+                            <br/>
+                            <div class="col-md-12">
                                 <input type="submit" class="btn btn-success btn-send" value="Send message">
                             </div>
                         </div>
@@ -86,7 +90,5 @@
 
 {% block scripts %}
 <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/5693130.js"></script> <!-- End of HubSpot Embed Code -->
-
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock %}
-
-
