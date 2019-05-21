@@ -56,7 +56,7 @@ class PagesController extends ControllerBase
                 'email'   => $email
             ];
 
-            //$this->mail->send('fcduythien@gmail.com', 'contact', $params);
+            $this->mail->send('fcduythien@gmail.com', 'contact', $params);
             $this->flashSession->success(t('Thank you for subscribing to our newsletter'));
             return $this->currentRedirect();
         }
