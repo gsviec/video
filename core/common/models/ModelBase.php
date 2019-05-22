@@ -53,7 +53,7 @@ class ModelBase extends Model
     /**
      * @var int
      */
-    protected $limit = 8;
+    protected $limit = 4;
 
     /**
      * @var int
