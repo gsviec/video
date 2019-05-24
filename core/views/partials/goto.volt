@@ -46,12 +46,12 @@
                         </div>
                     </div>
                     <div class="col-lg-7 col-sm-10 col-xs-12">
-                        <!-- <div class="h-resume">
-                            <div class="play-icon">
-                                <a href="#"><i class="cv cvicon-cv-play"></i></a>
+                        <div class="h-resume">
+                            <div class="pull-right color-active">
+                                <a href="https://gsviec.com/shop/product/ao-thun-gsviec/">Nhận ngay: Áo thun Gsviec</a>
                             </div>
-                            Resume:  <span class="color-default">Daredevil Season 2 : Episode 6 </span>
-                        </div> -->
+                            
+                        </div>
                     </div>
                     <div class="col-lg-1 col-sm-2 hidden-xs">
                         <div class="h-grid">

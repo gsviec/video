@@ -961,7 +961,7 @@ class Posts extends ModelBase
             ->where($where)
             ->notInWhere('categoryId', $catIds)
             ->orderBy('createdAt DESC')
-            ->limit($this->getLimit() / 2, $this->getOffset())
+            ->limit($this->getLimit(), $this->getOffset())
             ->execute()
         ;
         if ($posts->valid()) {
