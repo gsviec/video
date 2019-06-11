@@ -156,6 +156,10 @@ class RegisterController extends ControllerBase
         $form = new SignupForm;
 
         if ($this->request->isPost()) {
+            if (!$this->checkCaptcha()) {
+                $this->flashSession->error(t('prove your humanity'));
+                return $this->currentRedirect();
+            }
             $object = new Users();
             $form->bind($_POST, $object);
 
@@ -202,6 +206,8 @@ class RegisterController extends ControllerBase
 
             return $this->response->redirect();
         }
+        $siteKey = isset($this->config->reCaptcha->siteKey) ? $this->config->reCaptcha->siteKey : '';
+        $this->view->setVar('siteKey', $siteKey);
         $this->view->form = $form;
     }
 
