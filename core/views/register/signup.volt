@@ -32,7 +32,8 @@
                             <label for="exampleInputPassword2">Full Name</label>
                             {{ form.render('name') }}
                         </div>
-                        
+                        <div class="form-group g-recaptcha" data-sitekey="{{ siteKey }}"></div>
+
                         <div class="row">
                             <div class="col-lg-7"><button type="submit" class="btn btn-success">Sign Up</button></div>
                             <div class="col-lg-1 ortext">or</div>
@@ -52,4 +53,8 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock %}
