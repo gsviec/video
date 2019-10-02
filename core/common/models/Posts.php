@@ -34,7 +34,7 @@ class Posts extends ModelBase
     const VIDEO_GOOGLE_HOST = 'google';
     const VIDEO_JWPLAYER = 'jwplayer';
 
-    const THUMBNAIL_DEFAULT = 'video-thumbnail.png';
+    const THUMBNAIL_DEFAULT = 'video-thumbnail.png?v1';
 
     const CAT_SPORT = 17;
     const CAT_NEW = 25;
@@ -961,7 +961,7 @@ class Posts extends ModelBase
             ->where($where)
             ->notInWhere('categoryId', $catIds)
             ->orderBy('createdAt DESC')
-            ->limit($this->getLimit() / 2, $this->getOffset())
+            ->limit($this->getLimit(), $this->getOffset())
             ->execute()
         ;
         if ($posts->valid()) {
@@ -1099,8 +1099,7 @@ class Posts extends ModelBase
      */
     public function getWhereVideo()
     {
-        $status = self::STATUS_ACTIVE;
-        return "deleted = 0 AND status = '{$status}' AND type = 'video'";
+        return "deleted = 0 AND status IN ('active', 'private') AND type = 'video'";
     }
 
     /**
@@ -1246,6 +1245,13 @@ class Posts extends ModelBase
     public function isPublish()
     {
         if ($this->status == self::STATUS_ACTIVE) {
+            return true;
+        }
+        return false;
+    }
+    public function isPrivate()
+    {
+        if ($this->status == self::STATUS_PRIVATE) {
             return true;
         }
         return false;

@@ -7,7 +7,15 @@
                    {% if post.techOrder == 'youtube' %}
                         <iframe width="760" height="300" src="{{ post.getStreamUrl() }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                    {% else %}
-                     <video id="my-video"></video>
+                        {% if isPremium == true %}
+                            <video class='vjs-matrix video-js' controls preload='auto' width="100%" height="100%">
+                                <source src="{{ url }}" type='video/mp4'>
+                            </video>
+                        {% else %}
+                            <p> {{ playlist.content }}</p>
+                            <p> Video này thuộc phần nâng cao của khóa học {{ playlist.title }} do đó bạn cần phải thanh toán trước khi xem video này, để thanh toán khóa học này bạn chỉ việc click link này. https://gsviec.com/shop/product/{{ playlist.slug }}</p>
+
+                        {% endif %}
                    {% endif %}
             </div>
             <h1><a href="#">{{post.title}}</a></h1>

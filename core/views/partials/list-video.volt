@@ -4,7 +4,7 @@
         <div class="b-video" data-id="{{video.id}}">
             <div class="v-img">
                 <a href="/watch?v={{video.getShortId()}}">
-                    <img src="{{video.getThumbnailUrl()}}" height="169" width="270" alt="">
+                    <img class="img-responsive" src="{{video.getThumbnailUrl()}}" alt="{{ video.title }}">
                 </a>
                 <div class="time">{{video.duration}}</div>
             </div>

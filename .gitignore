@@ -27,3 +27,4 @@ tests/_support/_generated/*.php
 selenium-server-standalone-*.jar
 node_modules/
 public/blog/wp-config
+.env

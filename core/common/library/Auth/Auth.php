@@ -456,6 +456,7 @@ class Auth extends Component
                     'fullname'  => $object->getFullName(),
                     'username'  => $object->getUsername(),
                     'email'     => $object->getEmail(),
+                    'playlist'  => $object->getPlaylistId()
                 ]
             );
         };
@@ -472,5 +473,11 @@ class Auth extends Component
     public function getTimezone()
     {
         return 'UTC';
+    }
+
+    public function getPlaylisId()
+    {
+        $identity = $this->session->get('auth');
+        return explode(',', $identity['playlist']);
     }
 }

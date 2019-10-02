@@ -228,7 +228,11 @@ class Users extends ModelBase
      */
     protected $facebook;
 
-    protected $petname;
+    /**
+     * @var string
+     */
+    protected $playlistId;
+
 
     /**
      * Method to set the value of field id
@@ -1329,5 +1333,23 @@ class Users extends ModelBase
     {
         $avatar = 'images/avatar.png';
         return ZFunction::getUrlAvatar($this->email, $width);
+    }
+
+    /**
+     * Method to set the value of field id
+     *
+     * @param  string $ids
+     * @return $this
+     */
+    public function setPlaylistId($playlistId)
+    {
+        $this->playlistId = $playlistId;
+
+        return $this;
+    }
+
+    public function getPlaylistId()
+    {
+        return $this->playlistId;
     }
 }

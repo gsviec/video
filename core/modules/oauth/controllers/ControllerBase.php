@@ -143,4 +143,25 @@ class ControllerBase extends Controller
             ->addJs('js/app.js')
         ;
     }
+
+    /**
+     * Validation Google captcha
+     *
+     * @return boolean
+     */
+    protected function checkCaptcha()
+    {
+        $secret = $this->config->reCaptcha->secretKey;
+        $recaptchaResponse = $_POST['g-recaptcha-response'];
+        
+        if (!isset($recaptchaResponse) || !isset($secret)) {
+            return false;
+        }
+        $recaptcha = new \ReCaptcha\ReCaptcha($secret);
+        $resp = $recaptcha->verify($recaptchaResponse, $_SERVER['REMOTE_ADDR']);
+        if (!$resp->isSuccess()) {
+            return false;
+        }
+        return true;
+    }
 }

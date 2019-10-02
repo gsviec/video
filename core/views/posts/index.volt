@@ -47,7 +47,7 @@
                 </div>
             </div>
             {% endif %}
-            <!-- /New Videos in India -->
+            <!-- /New Videos -->
 
             {% if phpVideos | length > 0  %}
                 <div class="content-block head-div">
@@ -67,7 +67,7 @@
                 </div>
             {% endif %}
 
-            <!-- cats video -->
+            
 
             {% if wpVideos | length > 0  %}
             <div class="content-block head-div">
@@ -105,60 +105,6 @@
                     </div>
                 </div>
             {% endif %}
-            {% if toolVideos | length > 0  %}
-                <div class="content-block head-div">
-                    <div class="cb-header">
-                        <div class="row">
-                            <div class="col-lg-10 col-sm-10 col-xs-8">
-                                <ul class="list-inline">
-                                    <li><a href="/categories/tool" class="color-active">{{t('Tool Videos')}}</a></li>
-                                </ul>
-                            </div>
-                            {{ partial('partials/sortby') }}
-                        </div>
-                    </div>
-                    <div class="cb-content videolist">
-                        {{partial('partials/list-video', ['videos' : toolVideos])}}
-                    </div>
-                </div>
-            {% endif %}
-
-            {% if gitVideos | length > 0  %}
-                <div class="content-block head-div">
-                    <div class="cb-header">
-                        <div class="row">
-                            <div class="col-lg-10 col-sm-10 col-xs-8">
-                                <ul class="list-inline">
-                                    <li><a href="/categories/git" class="color-active">{{t('Git Videos')}}</a></li>
-                                </ul>
-                            </div>
-                            {{ partial('partials/sortby') }}
-                        </div>
-                    </div>
-                    <div class="cb-content videolist">
-                        {{partial('partials/list-video', ['videos' : gitVideos])}}
-                    </div>
-                </div>
-            {% endif %}
-
-            {% if jsVideos | length > 0  %}
-                <div class="content-block head-div">
-                    <div class="cb-header">
-                        <div class="row">
-                            <div class="col-lg-10 col-sm-10 col-xs-8">
-                                <ul class="list-inline">
-                                    <li><a href="/categories/javascript" class="color-active">{{t('JavaScript Videos')}}</a></li>
-                                </ul>
-                            </div>
-                            {{ partial('partials/sortby') }}
-                        </div>
-                    </div>
-                    <div class="cb-content videolist">
-                        {{partial('partials/list-video', ['videos' : jsVideos])}}
-                    </div>
-                </div>
-            {% endif %}
-
              <!-- Comedy videos -->
             {% if devopsVideos | length > 0  %}
             <div class="content-block head-div">

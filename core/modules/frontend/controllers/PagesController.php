@@ -37,12 +37,16 @@ class PagesController extends ControllerBase
         if (empty($router)) {
             $router = 'index';
         }
-        $this->view->isGoto = false;
+        $this->view->setVar('isGoto', false);
         return $this->view->pick('pages/' . $router);
     }
     public function serviceAction()
     {
         if ($this->request->isPost()) {
+            if (!$this->checkCaptcha()) {
+                $this->flashSession->error(t('prove your humanity'));
+                return $this->currentRedirect();
+            }
             $name   = $this->request->get('name') . ' ' . $this->request->get('surename');
             $email  = $this->request->get('email');
             $content = $this->request->get('content');
@@ -56,7 +60,30 @@ class PagesController extends ControllerBase
             $this->flashSession->success(t('Thank you for subscribing to our newsletter'));
             return $this->currentRedirect();
         }
-        $this->view->isGoto = false;
+        $siteKey = isset($this->config->reCaptcha->siteKey) ? $this->config->reCaptcha->siteKey : '';
+        $this->view->setVar('siteKey', $siteKey);
+        $this->view->setVar('isGoto', false);
         return $this->view->pick('pages/service');
+    }
+
+    /**
+     * Validation Google captcha
+     *
+     * @return boolean
+     */
+    protected function checkCaptcha()
+    {
+        $secret = $this->config->reCaptcha->secretKey;
+        $recaptchaResponse = $_POST['g-recaptcha-response'];
+        
+        if (!isset($recaptchaResponse) || !isset($secret)) {
+            return false;
+        }
+        $recaptcha = new \ReCaptcha\ReCaptcha($secret);
+        $resp = $recaptcha->verify($recaptchaResponse, $_SERVER['REMOTE_ADDR']);
+        if (!$resp->isSuccess()) {
+            return false;
+        }
+        return true;
     }
 }
