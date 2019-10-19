@@ -17,12 +17,11 @@ services:
      depends_on:
        - db
        - redis-master
-     image: gsviec/video:v9
-     build: .
+     image: gsviec/php:7.3-alpine
      ports:
        - "80:80"
      volumes:
-      - ./:/var/www/html
+      - ./:/app
      environment:
        DB_HOST: db:3306
        DB_USER: root
