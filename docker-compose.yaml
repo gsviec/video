@@ -13,16 +13,16 @@ services:
      MYSQL_PASSWORD: gsviec
    ports:
      - 3309:3306
+
   php:
    depends_on:
      - db
-     - redis-master
-   image: gsviec/video:v9
-   build: .
+     - redis
+   image: gsviec/php:7.3-alpine
    ports:
-     - "80:80"
+     - "8080:80"
    volumes:
-    - ./:/var/www/html
+    - ./:/app
    environment:
      DB_HOST: db:3306
      DB_USER: root
@@ -32,9 +32,10 @@ services:
      REDIS_HOST: redis-master
    env_file:
       - .env
+
   phpmyadmin:
     restart: 'no'
-    image: phpmyadmin/phpmyadmin:4.6
+    image: phpmyadmin/phpmyadmin:fpm-alpine
     depends_on:
       - db
     ports:
@@ -45,10 +46,11 @@ services:
       PMA_PORT: 3306
       PMA_USER: root
       PMA_PASSWORD: gsviec
-  redis-master:
+
+  redis:
     image: redis:alpine
     ports:
-      - '6379:6379'
+      - '63790:6379'
 
 volumes:
-    db_data:
+  db_data:
