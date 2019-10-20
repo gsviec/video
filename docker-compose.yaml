@@ -29,7 +29,7 @@ services:
      DB_PASSWORD: gsviec
      DB_NAME: gsviec
      APPLICATION_ENV: local
-     REDIS_HOST: redis-master
+     REDIS_HOST: redis
    env_file:
       - .env
 
