@@ -20,7 +20,7 @@ services:
      - redis
    image: gsviec/php:7.3-alpine
    ports:
-     - "8080:80"
+     - "80:80"
    volumes:
     - ./:/app
    environment:
