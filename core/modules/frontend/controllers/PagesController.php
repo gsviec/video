@@ -13,6 +13,8 @@
  */
 namespace Phanbook\Frontend\Controllers;
 
+use ReCaptcha\ReCaptcha;
+
 /**
  * Class RouterController
  * This class to router page
@@ -40,6 +42,10 @@ class PagesController extends ControllerBase
         $this->view->setVar('isGoto', false);
         return $this->view->pick('pages/' . $router);
     }
+
+    /**
+     * @return \Phalcon\Http\Response|\Phalcon\Http\ResponseInterface
+     */
     public function serviceAction()
     {
         if ($this->request->isPost()) {
@@ -75,11 +81,11 @@ class PagesController extends ControllerBase
     {
         $secret = $this->config->reCaptcha->secretKey;
         $recaptchaResponse = $_POST['g-recaptcha-response'];
-        
+
         if (!isset($recaptchaResponse) || !isset($secret)) {
             return false;
         }
-        $recaptcha = new \ReCaptcha\ReCaptcha($secret);
+        $recaptcha = new ReCaptcha($secret);
         $resp = $recaptcha->verify($recaptchaResponse, $_SERVER['REMOTE_ADDR']);
         if (!$resp->isSuccess()) {
             return false;

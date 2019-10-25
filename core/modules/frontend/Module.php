@@ -2,14 +2,14 @@
 
 namespace Phanbook\Frontend;
 
-use Phalcon\Loader;
+use Exception;
 use Phalcon\DiInterface;
-use Phalcon\Mvc\View;
-use Phalcon\Mvc\Url;
-use Phalcon\Mvc\Dispatcher;
-use Phalcon\Mvc\View\Engine\Volt;
 use Phalcon\Events\Manager as EventsManager;
+use Phalcon\Loader;
+use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\ModuleDefinitionInterface;
+use Phalcon\Mvc\Url;
+use Phalcon\Mvc\View;
 
 class Module implements ModuleDefinitionInterface
 {
@@ -19,7 +19,7 @@ class Module implements ModuleDefinitionInterface
 
         $loader->registerNamespaces([
             'Phanbook\Frontend\Controllers' => __DIR__ . '/controllers/',
-            'Phanbook\Frontend\Forms'       => __DIR__ . '/forms/'
+            'Phanbook\Frontend\Forms' => __DIR__ . '/forms/',
         ]);
 
         $loader->register();
@@ -61,19 +61,22 @@ class Module implements ModuleDefinitionInterface
             $eventsManager->attach('dispatch', function ($event, $dispatcher, $exception) use ($di) {
                 //controller or action doesn't exist
                 if ($event->getType() == 'beforeException') {
-                    $message  = $exception->getMessage();
-                   
+                    $message = $exception->getMessage();
+
                     $response = $di->getResponse();
                     switch ($exception->getCode()) {
                         case Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
                             $response->redirect();
+
                             return false;
                         case Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
                             $response->redirect('action-not-found?msg=' . $message);
+
                             return false;
 
                         case Dispatcher::EXCEPTION_CYCLIC_ROUTING:
                             $response->redirect('cyclic-routing?msg=' . $message);
+
                             return false;
                     }
                 }
@@ -81,6 +84,7 @@ class Module implements ModuleDefinitionInterface
             $dispatcher = new Dispatcher();
             $dispatcher->setDefaultNamespace("Phanbook\\Frontend\\Controllers");
             $dispatcher->setEventsManager($eventsManager);
+
             return $dispatcher;
         });
         /**
@@ -102,7 +106,7 @@ class Module implements ModuleDefinitionInterface
                     'view',
                     function ($event, $view) {
                         if ($event->getType() == 'notFoundView') {
-                            throw new \Exception('View not found!!! (' . $view->getActiveRenderPath() . ')');
+                            throw new Exception('View not found!!! (' . $view->getActiveRenderPath() . ')');
                         }
                     }
                 );

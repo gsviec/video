@@ -12,23 +12,18 @@
  */
 namespace Phanbook\Frontend\Controllers;
 
-use Phanbook\Controllers\Controller;
 use Phalcon\Mvc\Dispatcher;
-use Phalcon\Db\Adapter\Pdo;
-use Phanbook\Models\Playlist;
-use Phanbook\Models\Vote;
-use Phanbook\Models\Users;
-use Phanbook\Models\Karma;
-use Phanbook\Models\Tags;
-use Phanbook\Models\Posts;
-use Phanbook\Models\Comment;
-use Phanbook\Models\PostsReply;
+use Phanbook\Controllers\Controller;
 use Phanbook\Frontend\Forms\CommentForm;
-use Phanbook\Models\ModelBase;
-use Phanbook\Tools\ShortId;
 use Phanbook\Models\ActivityNotifications;
-use Phalcon\Paginator\Adapter\QueryBuilder as PaginatorQueryBuilder;
-use Phalcon\Paginator\Adapter\NativeArray  as PaginatorNativeArray;
+use Phanbook\Models\Comment;
+use Phanbook\Models\Karma;
+use Phanbook\Models\Playlist;
+use Phanbook\Models\Posts;
+use Phanbook\Models\PostsReply;
+use Phanbook\Models\Users;
+use Phanbook\Models\Vote;
+use Phanbook\Tools\ShortId;
 
 /**
  * Class ControllerBase
@@ -37,7 +32,6 @@ use Phalcon\Paginator\Adapter\NativeArray  as PaginatorNativeArray;
  */
 class ControllerBase extends Controller
 {
-
     /**
      * @var array
      */
@@ -104,7 +98,6 @@ class ControllerBase extends Controller
         // @todo something
         if ($this->auth->hasRememberMe() && !$this->request->isPost()) {
             $this->auth->loginWithRememberMe();
-
             //Need return when have session
         }
         $this->getSessionFromRedis();
@@ -118,24 +111,20 @@ class ControllerBase extends Controller
      */
     private function loadDefaultAssets()
     {
-        if (APPLICATION_ENV == ENV_PRODUCTION ) {
+        if (APPLICATION_ENV == ENV_PRODUCTION) {
             $this->assets
                 ->addCss('https://fonts.googleapis.com/css?family=Hind:400,300,500,600,700', false)
-                ->addCss('/css/all.min.css')
-            ;
+                ->addCss('/css/all.min.css');
             $this->assets
                 #->addJs('https://content.jwplatform.com/libraries/zVSdRWQd.js', false)
-                ->addJs('/js/all.min.js', false)
-            ;
+                ->addJs('/js/all.min.js', false);
         } else {
-
             $this->assets
                 ->addCss('https://fonts.googleapis.com/css?family=Hind:400,300,500,600,700', false)
                 ->addCss('/css/bootstrap.min.css', false)
                 ->addCss('/css/font-awesome.min.css', false)
                 ->addCss('/css/font-circle-video.css', false)
-                ->addCss('/css/app.css', false)
-                //->addCss('css/login.css')
+                ->addCss('/css/app.css', false)//->addCss('css/login.css')
             ;
             $this->assets
                 ->addJs('/js/jquery.js', false)
@@ -143,8 +132,7 @@ class ControllerBase extends Controller
                 ->addJs('https://content.jwplatform.com/libraries/zVSdRWQd.js', false)
                 ->addJs('/js/notify.js', false)
                 ->addJs('/js/app.function.js', false)
-                ->addJs('/js/app.js', false)
-            ;
+                ->addJs('/js/app.js', false);
         }
     }
 
@@ -152,14 +140,13 @@ class ControllerBase extends Controller
     {
         $this->assets
             ->addCss('/css/jquery-upload/jquery.fileupload.css', false)
-            ->addCss('/css/jquery-upload/jquery.fileupload-ui.css', false)
-        ;
+            ->addCss('/css/jquery-upload/jquery.fileupload-ui.css', false);
         $this->assets
             ->addJs('/js/jquery.ui.widget.js', false)
             ->addJs('/js/jquery-upload//jquery.iframe-transport.js', false)
-            ->addJs('/js/jquery-upload/jquery.fileupload.js', false)
-        ;
+            ->addJs('/js/jquery-upload/jquery.fileupload.js', false);
     }
+
     /**
      * After execute route event
      *
@@ -181,23 +168,21 @@ class ControllerBase extends Controller
 
     public function initialize()
     {
-
         $this->view->setVars([
-            'name'          => $this->config->application->name,
-            'gAnalytic'     => $this->config->google->analytic,
-            'facebookApp'   => $this->config->facebook->clientId,
-            'canonical'     => $this->config->application->publicUrl,
-            'class'         => 'default',
-            'action'        => $this->router->getActionName(),
-            'controller'    => $this->router->getControllerName(),
-            'isGoto'        => true,
-            'baseUri'       => '/',
-            'publicUrl'     => $this->config->application->publicUrl,
-            'currentUri'    => $this->getCurrentUri(),
-            'playlist'      => Playlist::getPlaylist()
+            'name' => $this->config->application->name,
+            'gAnalytic' => $this->config->google->analytic,
+            'facebookApp' => $this->config->facebook->clientId,
+            'canonical' => $this->config->application->publicUrl,
+            'class' => 'default',
+            'action' => $this->router->getActionName(),
+            'controller' => $this->router->getControllerName(),
+            'isGoto' => true,
+            'baseUri' => '/',
+            'publicUrl' => $this->config->application->publicUrl,
+            'currentUri' => $this->getCurrentUri(),
+            'playlist' => Playlist::getPlaylist(),
         ]);
     }
-
 
     /**
      * @param Dispatcher $dispatcher
@@ -233,7 +218,6 @@ class ControllerBase extends Controller
         }
     }
 
-
     public function toggleAction($id)
     {
         $this->view->disable();
@@ -259,7 +243,7 @@ class ControllerBase extends Controller
             return false;
         }
 
-        $id     = $this->filter->sanitize($id, ['int']);
+        $id = $this->filter->sanitize($id, ['int']);
         $object = $class::findFirstById($id);
 
         if (!is_object($object)) {
@@ -296,15 +280,15 @@ class ControllerBase extends Controller
         }
 
         if (is_array($id)) {
-            $ids    = array_map(
+            $ids = array_map(
                 function ($key) {
-                    return (int)$key;
+                    return (int) $key;
                 },
                 $id
             );
             $object = $class::find('id IN (' . implode(',', $ids) . ')');
         } else {
-            $id     = $this->filter->sanitize($id, ['int']);
+            $id = $this->filter->sanitize($id, ['int']);
             $object = $class::findFirstById($id);
         }
         if (!$object) {
@@ -348,17 +332,19 @@ class ControllerBase extends Controller
             $way = 'negative';
         }
         $objectId = $this->request->getPost('objectId');
-        $object   = $this->request->getPost('object');
-        $user     = Users::findFirstById($this->auth->getAuth()['id']);
+        $object = $this->request->getPost('object');
+        $user = Users::findFirstById($this->auth->getAuth()['id']);
 
         if (!$user) {
             echo $this->respondWithError(t("You need login before vote this"), 403);
+
             return 0;
         }
         $this->db->begin();
         if ($object == Vote::OBJECT_POSTS) {
             if (!$post = Posts::findFirstById($objectId)) {
                 echo $this->respondWithError('NOT_EXITS', 404);
+
                 return 0;
             }
             $this->setPointPost($way, $user, $post);
@@ -372,6 +358,7 @@ class ControllerBase extends Controller
         if ($object == Vote::OBJECT_POSTS_REPLIES) {
             if (!$postReply = PostsReply::findFirstById($objectId)) {
                 echo $this->respondWithError('NOT_EXITS', 404);
+
                 return 0;
             }
             //Set karam Voting someone else's post (positive or negative) on posts reply
@@ -381,6 +368,7 @@ class ControllerBase extends Controller
         if (!$vote) {
             $this->db->rollback();
             echo $this->respondWithError('Vote have a problem', 404);
+
             return 0;
         }
 
@@ -388,6 +376,7 @@ class ControllerBase extends Controller
         if (is_string($vote)) {
             $this->db->rollback();
             echo $this->respondWithError($vote, 404);
+
             return 0;
         }
         $this->db->commit();
@@ -395,10 +384,12 @@ class ControllerBase extends Controller
         echo $this->respondWithArray([
             'sum' => $vote['positive'] - $vote['negative'],
             'positive' => $vote['positive'],
-            'negative' => $vote['negative']
+            'negative' => $vote['negative'],
         ]);
+
         return 1;
     }
+
     /**
      * Comments are temporary "Post-It" notes left on a question or answer.
      * They can be up-voted (but not down-voted) and flagged, but do not generate reputation.
@@ -417,14 +408,16 @@ class ControllerBase extends Controller
 
         if (!$user) {
             $this->flashSession->error(t('You need to login first'));
+
             return $this->currentRedirect();
         }
         if ($user->getVote() < 9) {
             $this->flashSession->error(t('You must have 10 points to add comment'));
+
             return $this->currentRedirect();
         }
         $object = new Comment();
-        $form   = new CommentForm($object);
+        $form = new CommentForm($object);
         $form->bind($_POST, $object);
 
         if (!$form->isValid($this->request->getPost())) {
@@ -436,6 +429,7 @@ class ControllerBase extends Controller
                 $this->displayModelErrors($object);
             }
         }
+
         return $this->currentRedirect();
     }
 
@@ -453,37 +447,43 @@ class ControllerBase extends Controller
             'image/jpg',
             'image/png',
             'image/bmp',
-            'image/jpeg'
+            'image/jpeg',
         ];
 
         return in_array($extension, $allowedTypes);
     }
+
     public function videoCheck($extension)
     {
         $allowedTypes = [
             'mp4',
-            'flv'
+            'flv',
         ];
 
         return in_array($extension, $allowedTypes);
     }
+
     public function indexRedirect()
     {
         return $this->response->redirect();
     }
+
     public function currentRedirect()
     {
         if ($url = $this->cookies->get('urlCurrent')->getValue()) {
             $this->cookies->delete('urlCurrent');
+
             return $this->response->redirect($url);
         }
+
         return $this->response->redirect($this->request->getHTTPReferer(), true);
     }
+
     /**
      * Set karam Voting someone else's post (positive or negative) on posts reply
      *
-     * @param string $way       [description]
-     * @param object $user      Phanbook\Models\Users
+     * @param string $way [description]
+     * @param object $user Phanbook\Models\Users
      * @param object $postReply Phanbook\Models\PostsReply
      */
     public function setPointReply($way, $user, $postReply)
@@ -515,9 +515,10 @@ class ControllerBase extends Controller
             if (!$user->save()) {
                 foreach ($user->getMessages() as $message) {
                     $this->jsonMessages['messages'][] = [
-                        'type'  => 'error',
-                        'message' => $message->getMessage()
+                        'type' => 'error',
+                        'message' => $message->getMessage(),
                     ];
+
                     return $this->jsonMessages;
                 }
             }
@@ -525,10 +526,11 @@ class ControllerBase extends Controller
             error_log('todo setPointReply');
         }
     }
+
     /**
      * Set karam Voting someone else's post (positive or negative) on posts
      *
-     * @param string $way  positive or negative
+     * @param string $way positive or negative
      * @param object $user Phanbook\Models\Users
      * @param object $post Phanbook\Models\Posts
      */
@@ -548,9 +550,10 @@ class ControllerBase extends Controller
             if (!$user->save()) {
                 foreach ($user->getMessages() as $message) {
                     $this->jsonMessages['messages'][] = [
-                        'type'  => 'error',
-                        'message' => $message->getMessage()
+                        'type' => 'error',
+                        'message' => $message->getMessage(),
                     ];
+
                     return $this->jsonMessages;
                 }
             }
@@ -558,12 +561,13 @@ class ControllerBase extends Controller
             $this->saveLoger('todo setPointReply');
         }
     }
+
     /**
      * These is it will save ActivityNotifications when the user have comment,
      * vote, etc to post or post reply, which just display for user
      *
-     * @param  object $user   this is session user Phanbook\Models\Users
-     * @param  object $object Phanbook\Models\{Posts, PostsReply...}
+     * @param object $user this is session user Phanbook\Models\Users
+     * @param object $object Phanbook\Models\{Posts, PostsReply...}
      * @return mixed
      */
     public function setActivityNotifications($user, $object)
@@ -594,6 +598,7 @@ class ControllerBase extends Controller
             $this->saveLoger('Save fail, I am on here' . __LINE__);
         }
     }
+
     /**
      * The function sending log for nginx or apache, it will to analytic later
      *
@@ -601,7 +606,6 @@ class ControllerBase extends Controller
      */
     public function saveLoger($e)
     {
-
         $logger = $this->logger;
         if (is_object($e)) {
             $logger->error($e[0]->getMessage());
@@ -615,6 +619,7 @@ class ControllerBase extends Controller
             $logger->error($e);
         }
     }
+
     /**
      * Transfer values from the controller to views
      *
@@ -626,10 +631,12 @@ class ControllerBase extends Controller
             $this->view->setVar($key, $value);
         }
     }
+
     public function currentController()
     {
         return $this->response->redirect($this->router->getControllerName());
     }
+
     /**
      * @param $id
      */
@@ -640,22 +647,26 @@ class ControllerBase extends Controller
             return $this->dispatcher->forward([
                 'controller' => $this->router->getControllerName(),
                 'action' => 'edit',
-                'params' => [$id, serialize($_POST)]
+                'params' => [$id, serialize($_POST)],
 
             ]);
         }
+
         return $this->dispatcher->forward(
             ['controller' => $this->router->getControllerName(), 'action' => 'new']
         );
     }
+
     public function authorize($object)
     {
         if ($this->auth->isAdmin()) {
             return true;
         }
         $id = $this->auth->getUserId();
+
         return $id == $object->usersId;
     }
+
     /**
      * @param $message
      * @param $errorCode
@@ -668,16 +679,17 @@ class ControllerBase extends Controller
                 'code' => $errorCode,
                 'http_code' => $this->statusCode,
                 'message' => $message,
-            ]
+            ],
         ]);
     }
+
     public function respondWithSuccess($message = 'ok')
     {
         return $this->respondWithArray(
             [
                 'success' => [
                     'message' => $message,
-                ]
+                ],
             ]
         );
     }
@@ -686,15 +698,18 @@ class ControllerBase extends Controller
     {
         return json_encode($data);
     }
+
     public function setStatusCode($statusCode)
     {
         $this->statusCode = $statusCode;
+
         return $this;
     }
+
     protected function getUrlVideo($id)
     {
         return $this->config->application->publicUrl .
-        'watch?v=' .ShortId::encode($id);
+               'watch?v=' . ShortId::encode($id);
     }
 
     /* gets the data from a URL */
@@ -707,6 +722,7 @@ class ControllerBase extends Controller
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         $data = curl_exec($ch);
         curl_close($ch);
+
         return json_decode($data, true);
     }
 
@@ -716,12 +732,14 @@ class ControllerBase extends Controller
     public function setPerPage($page)
     {
         $this->perPage = $page;
+
         return $this;
     }
+
     public function getCurrentUri()
     {
         $controller = $this->router->getControllerName();
-        if ( 'posts' === $controller) {
+        if ('posts' === $controller) {
             return 'posts?';
         }
         $query = $this->request->getQuery();
@@ -733,7 +751,8 @@ class ControllerBase extends Controller
             $slug = $this->dispatcher->getParam('slug');
             $controller .= '/' . $slug;
         }
-        return $controller . '?'. http_build_query($query) . '&';
+
+        return $controller . '?' . http_build_query($query) . '&';
     }
 
     protected function getSessionFromRedis()

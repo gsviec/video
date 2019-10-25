@@ -10,8 +10,8 @@
  * @since   1.0.0
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
  */
+
 use Phalcon\Mvc\Application;
-error_reporting(E_ALL);
 
 ini_set('memory_limit', '-1');
 
@@ -26,6 +26,14 @@ try {
     $modules = require ROOT_DIR . '/core/config/modules.php';
 
     require_once ROOT_DIR . '/core/config/routing.php';
+
+    if (APPLICATION_ENV == 'local') {
+        error_reporting(E_ALL);
+        ini_set('error_reporting', 1);
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 0);
+        ini_set('log_errors', 0);
+    }
 
     /**
      * Handle the request

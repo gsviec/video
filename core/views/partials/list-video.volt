@@ -10,10 +10,11 @@
             </div>
             <div class="vcontent">
                 <div class="v-desc">
-                <a href="/watch?v={{video.getShortId() }}"> {{ truncate(video.title, 69) }}</a>
+                    <a href="/watch?v={{video.getShortId() }}">{{ truncate(video.title, 69) }}</a>
                 </div>
                 <div class="v-views">
-                    {{video.getHumanNumberViews()}} views. <span class="v-percent"><span class="v-circle"></span> 78%</span>&nbsp;{{ video.getHumanCreatedAt()}}
+                    <span class="view-count">{{video.getHumanNumberViews()}} views</span>
+                    <span class="created-time">&nbsp;{{ video.getHumanCreatedAt()}} </span>
                 </div>
             </div>
         </div>

@@ -13,57 +13,54 @@
 namespace Phanbook\Frontend\Controllers;
 
 use Phalcon\Mvc\View;
-use Phanbook\Models\Channels;
-use Phanbook\Models\Playlist;
-use Phanbook\Utils\DateTime;
-use Phanbook\Utils\Slug;
-use Phanbook\Utils\Editor;
-use Phanbook\Models\Posts;
-use Phanbook\Models\Vote;
-use Phanbook\Models\Karma;
-use Phanbook\Models\Users;
-use Phanbook\Models\ModelBase;
-use Phanbook\Models\PostsViews;
-use Phanbook\Models\PostsHistory;
-use Phanbook\Models\PostsPlaylist;
-use Phanbook\Frontend\Forms\ReplyForm;
 use Phanbook\Frontend\Forms\CommentForm;
 use Phanbook\Frontend\Forms\PostsForm;
+use Phanbook\Models\Karma;
+use Phanbook\Models\Playlist;
+use Phanbook\Models\Posts;
+use Phanbook\Models\PostsPlaylist;
+use Phanbook\Models\PostsViews;
+use Phanbook\Models\Users;
+use Phanbook\Models\Vote;
 use Phanbook\Tools\ShortId;
+use Phanbook\Utils\DateTime;
+
 /**
  * Class QuestionsController.
  */
 class PostsController extends ControllerBase
 {
-
     /**
-     * Default it will get all posts
+     * Handle Homepage display
      */
     public function indexAction()
     {
         $posts = new Posts();
-        list($page, $perPage, $offset) = $this->getPerPageAndOffset();
-        $posts->setOffset($offset);
-        $this->view->setVars([
-            'page'           => $page,
-            'perPage'        => $perPage,
-            'newVideos'      => $posts->getNewVideos(),
-            'wpVideos'       => $posts->getWordpressVideos(),
-            'phpVideos'      => $posts->getPhpVideos(),
-            'gitVideos'      => $posts->getGitVideos(),
-            'htmlVideos'     => $posts->getHtmlVideos(),
-            'toolVideos'     => $posts->getToolVideos(),
-            'jsVideos'       => $posts->getJavaScriptVideos(),
-            'devopsVideos'   => $posts->getDevopsVideos(),
-            'featureVideos'  => $posts->getFeatureVideos(),
-            'phalconVideos'  => $posts->getPhalconVideos(),
-            'playlist'       => Playlist::getPopular()
-        ]);
 
+        list($page, $perPage, $offset) = $this->getPerPageAndOffset();
+
+        $posts->setOffset($offset);
+
+        $this->view->setVars([
+            'page' => $page,
+            'perPage' => $perPage,
+            'newVideos' => $posts->getNewVideos(),
+            'wpVideos' => $posts->getWordpressVideos(),
+            'phpVideos' => $posts->getPhpVideos(),
+            'gitVideos' => $posts->getGitVideos(),
+            'htmlVideos' => $posts->getHtmlVideos(),
+            'toolVideos' => $posts->getToolVideos(),
+            'jsVideos' => $posts->getJavaScriptVideos(),
+            'devopsVideos' => $posts->getDevopsVideos(),
+            'featureVideos' => $posts->getFeatureVideos(),
+            'phalconVideos' => $posts->getPhalconVideos(),
+            'playlist' => Playlist::getPopular(),
+        ]);
     }
 
     /**
-     * Method editAction.
+     * @param $id
+     * @return \Phalcon\Http\Response|\Phalcon\Http\ResponseInterface
      */
     public function editAction($id)
     {
@@ -74,12 +71,14 @@ class PostsController extends ControllerBase
         }
 
         if (!$object = Posts::findFirstById($id)) {
-            $this->flashSession->error(t('Posts doesn\'t exist.'));
+            $this->flashSession->error(t('Posts does not exist.'));
+
             return $this->currentRedirect();
         }
 
         if (!$this->authorize($object)) {
             $this->flashSession->error(t('You do not have permission to edit this page'));
+
             return $this->currentRedirect();
         }
 
@@ -87,19 +86,24 @@ class PostsController extends ControllerBase
         $form = new PostsForm($object);
 
         $this->view->setVars([
-
             'object' => $object,
             'form' => $form,
-            'url'=> $this->getUrlVideo($object->id)
+            'url' => $this->getUrlVideo($object->id),
         ]);
     }
+
+    /**
+     * @return \Phalcon\Http\Response|\Phalcon\Http\ResponseInterface|void
+     */
     public function updateAction()
     {
         $id = $this->request->getPost('id');
         if (!$object = Posts::findFirstById($id)) {
             $this->flashSession->error(t('Posts doesn\'t exist.'));
+
             return $this->currentRedirect();
         }
+
         $object->setEditedAt(time());
         $form = new PostsForm($object);
         //save data
@@ -109,20 +113,26 @@ class PostsController extends ControllerBase
                 foreach ($form->getMessages() as $m) {
                     $this->flashSession->error($m->getMessage());
                 }
+
                 return $this->redirectKeepValue($id);
             }
+
             if (!$object->save()) {
                 foreach ($object->getMessages() as $m) {
                     $this->flashSession->error($m->getMessage());
                 }
+
                 return $this->redirectKeepValue($id);
             }
             $this->flashSession->success(t('Update data was success'));
+
             return $this->response->redirect($this->router->getControllerName() . '/edit/' . $id);
         }
     }
+
     /**
      * Save data after submit a video via ajax
+     *
      * @return \Phalcon\Http\ResponseInterface
      */
     public function saveAction()
@@ -163,13 +173,19 @@ class PostsController extends ControllerBase
             if (!$object->save()) {
                 $m = $object->getMessages();
                 echo $this->respondWithError($m[0]->getMessage(), 404);
+
                 return 0;
             }
+
             echo $this->renderUploadForm($object);
+
             return 1;
         }
     }
 
+    /**
+     * @return \Phalcon\Http\Response|\Phalcon\Http\ResponseInterface
+     */
     public function saveLinkAction()
     {
         $link = $this->request->getPost('link');
@@ -179,15 +195,18 @@ class PostsController extends ControllerBase
 
         if (!is_array($data)) {
             $this->flashSession->notice('Url youtube no accepted!');
+
             return $this->currentRedirect();
         }
+
         $snippet = $data['items'][0]['snippet'];
-        $tags    = $snippet['tags'];
+        $tags = $snippet['tags'];
         $contentDetails = $data['items'][0]['contentDetails'];
         $post = new Posts();
         $post->setTitle($snippet['title']);
         $post->setVideoFilename($videoFilename);
         $post->setTechOrder(Posts::VIDEO_YOUTUBE);
+
         //@Default categories
         $post->setCategoryId(120);
         $post->setContent($snippet['description']);
@@ -196,40 +215,38 @@ class PostsController extends ControllerBase
         if (is_array($tags)) {
             $post->setTags(implode(',', $tags));
         }
-        //if isset($data[])
+
         if (!$post->save()) {
             foreach ($post->getMessages() as $m) {
                 $this->flashSession->error($m->getMessage());
             }
+
             return $this->currentRedirect();
         }
         $this->flashSession->success('Data was add successfully');
+
         return $this->response->redirect($this->router->getControllerName() . '/edit/' . $post->id);
     }
 
-
+    /**
+     * @param $object
+     * @return string
+     */
     protected function renderUploadForm($object)
     {
         $url = $this->config->application->publicUrl .
-            '/watch?v=' .ShortId::encode($object->id)
-        ;
-        $params = ['object' => $object , 'form' => new PostsForm($object), 'url' => $url, 'flag' => true];
+               '/watch?v=' . ShortId::encode($object->id);
+        $params = ['object' => $object, 'form' => new PostsForm($object), 'url' => $url, 'flag' => true];
         $html =
-        $this->view->getRender(
-            'posts',
-            'item-detail',
-            $params, function($view) {
+            $this->view->getRender(
+                'posts',
+                'item-detail',
+                $params, function ($view) {
                 $view->setRenderLevel(View::LEVEL_ACTION_VIEW);
             }
-        );
-        return $html;
-    }
+            );
 
-    /**
-     * Delete spam posts
-     */
-    public function deleteAction($id)
-    {
+        return $html;
     }
 
     /**
@@ -239,21 +256,23 @@ class PostsController extends ControllerBase
     {
         if (!$this->auth->getAuth()) {
             $this->flashSession->notice(t('You need to login before uploads'));
+
             return $this->indexRedirect();
         }
         //@TODO remove
         if (!$this->auth->isAdmin()) {
             return $this->indexRedirect();
         }
+
         $this->loaderAssetsJqueryUpload();
         $this->view->pick('posts/item');
     }
+
     /**
      * Displays a post and its comments
      *
      * @param $id
      * @param $slug
-     *
      * @return \Phalcon\Http\ResponseInterface
      */
     public function viewAction()
@@ -268,16 +287,18 @@ class PostsController extends ControllerBase
         $id = ShortId::decode($encode);
         if (!$post = Posts::findFirstById($id)) {
             $this->flashSession->error(t('Posts doesn\'t exist.'));
+
             return $this->indexRedirect();
         }
         if ($post->getDeleted()) {
             $this->flashSession->error('The Post is deleted');
+
             return $this->indexRedirect();
         }
         //@TODO add redis
         $params = array(
             'postsId = ?0 AND ipaddress = ?1',
-            'bind' => array($id, $ipAddress)
+            'bind' => array($id, $ipAddress),
         );
         $viewed = PostsViews::count($params);
         //A view is stored by ipAddress
@@ -326,35 +347,33 @@ class PostsController extends ControllerBase
         $this->view->setVars([
             'id' => $id,
             'class' => 'single-video',
-            'form'  => new CommentForm(),
-            'post'  => $post,
-            'vote'  => $vote,
+            'form' => new CommentForm(),
+            'post' => $post,
+            'vote' => $vote,
             'total' => $total,
             'disqus' => $this->getConfigDisqus(),
             'techOrder' => $post->getTechOrderAndType(),
             'comments' => $comments,
             'nextVideo' => $nextVideo,
             'recommendVideo' => $post->getNewVideos(),
-            'url'=> $this->getUrlVideo($id),
+            'url' => $this->getUrlVideo($id),
             'author' => $post->user->getFullName(),
-            'isPremium' => false
+            'isPremium' => false,
         ]);
-
 
         if ($post->isPrivate()) {
             $playlistId = PostsPlaylist::getPlaylistIdByPostId($id);
 
             if (count(array_intersect($playlistId, $this->auth->getPlaylisId())) > 0) {
                 $this->view->isPremium = true;
-                $this->assets->addJs('https://vjs.zencdn.net/7.5.4/video.js', false)
-                ;
+                $this->assets->addJs('https://vjs.zencdn.net/7.5.4/video.js', false);
                 $this->assets->addCss('/css/video.css');
                 $url = $this->storage->createPresignedRequest('SampleVideo_1280x720_1mb.mp4');
                 $this->view->url = $url;
                 //d($url);
             }
         }
-       // d($post->toArray());
+        // d($post->toArray());
 
     }
 
@@ -378,7 +397,7 @@ class PostsController extends ControllerBase
         $message = base64_encode(json_encode($data));
         $timestamp = time();
         $hmac = $this->phanbook->hmacsha1($message . ' ' . $timestamp, $disqus['keySecret']);
-        $disqus['remoteAuthS3'] = $message . ' ' . $hmac . ' '. $timestamp;
+        $disqus['remoteAuthS3'] = $message . ' ' . $hmac . ' ' . $timestamp;
 
         return $disqus;
     }

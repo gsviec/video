@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Add meta tags to refactor-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=6">
@@ -45,16 +44,13 @@
 </head>
 
 <body class="{{ class }} {{controller}} {{action}} light">
-
-<!-- logo, menu, search, avatar -->
 {{ partial('partials/header')}}
-<!-- /logo -->
-
 {{ partial('partials/goto')}}
 <div class="m-d-md"> {{ this.flashSession.output()}}</div>
 <div class="content-wrapper">
     <div class="container">
-        {% block content%}{% endblock %}
+        {% block content%}
+        {% endblock %}
     </div>
 </div>
 
@@ -75,10 +71,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', gAnalytic);
 </script>
-
-
 </body>
 </html>
