@@ -13,14 +13,13 @@
  */
 namespace Phanbook\Controllers;
 
-use Phalcon\Mvc\Dispatcher;
-use Phalcon\Db\Adapter\Pdo;
-use Phanbook\Models\ModelBase;
+use PDO;
 use Phalcon\Mvc\Controller as ControllerPhalcon;
-
+use Phalcon\Mvc\Dispatcher;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
-use Phalcon\Paginator\Adapter\QueryBuilder as PaginatorQueryBuilder;
 use Phalcon\Paginator\Adapter\NativeArray as PaginatorNativeArray;
+use Phalcon\Paginator\Adapter\QueryBuilder as PaginatorQueryBuilder;
+use Phanbook\Models\ModelBase;
 
 /**
  * Class Controller
@@ -472,8 +471,8 @@ class Controller extends ControllerPhalcon
                         [$k => self::$grid['grid'][$k]['filter']['sanitize']
                         == 'string' ? '%' . $v . '%' : $v],
                         [$k => (self::$grid['grid'][$k]['filter']['sanitize']
-                        == 'int' ? \PDO::PARAM_INT : (self::$grid['grid'][$k]['filter']['sanitize']
-                        == 'string' ? \PDO::PARAM_STR : \PDO::PARAM_BOOL))]
+                        == 'int' ? PDO::PARAM_INT : (self::$grid['grid'][$k]['filter']['sanitize']
+                        == 'string' ? PDO::PARAM_STR : PDO::PARAM_BOOL))]
                     ];
             }
         }

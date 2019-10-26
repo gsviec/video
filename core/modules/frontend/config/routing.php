@@ -12,9 +12,9 @@
  */
 
 $router->setDefaults([
-    'module'     => 'frontend',
+    'module' => 'frontend',
     'controller' => 'posts',
-    'action'     => 'index'
+    'action' => 'index',
 ]);
 $router->removeExtraSlashes(true);
 
@@ -23,39 +23,43 @@ $router->add('/:controller/:action/:params', [
     'action' => 2,
     'params' => 3,
 ]);
+
 $router->add('/:controller[/]?', [
     'controller' => 1,
 ]);
+
 $router->add('/:controller/:int/{slug}', [
     'controller' => 1,
     'id' => 2,
     'slug' => 3,
-    'action' => 'view'
+    'action' => 'view',
 ]);
+
 $router->add('/categories/{slug}', [
     'controller' => 'categories',
     'slug' => 1,
-    'action' => 'view'
-]);
-$router->add('/posts/:int/{slug}', [
-    'id'        => 1,
-    'slug'      => 2,
-    'action'    => 'view'
+    'action' => 'view',
 ]);
 
+$router->add('/posts/:int/{slug}', [
+    'id' => 1,
+    'slug' => 2,
+    'action' => 'view',
+]);
 
 $router->add('/upload', [
     'controller' => 'posts',
-    'action' => 'new'
+    'action' => 'new',
 ]);
+
 $router->add('/watch', [
     'controller' => 'posts',
-    'action' => 'view'
+    'action' => 'view',
 ]);
 
 $router->add('/channels/{slug}', [
     'controller' => 'channels',
-    'action' => 'view'
+    'action' => 'view',
 ])->beforeMatch(function ($uri, $route) {
     $uris = ['/channels/save'];
     if (in_array($uri, $uris)) {
@@ -68,11 +72,13 @@ $router->add('/channels/{slug}', [
         && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
         return false;
     }
+
     return true;
 });
+
 $router->add('/playlist/{slug}', [
     'controller' => 'playlist',
-    'action' => 'view'
+    'action' => 'view',
 ])->beforeMatch(function ($uri, $route) {
     $uris = ['/playlist/save', '/playlist/new'];
     if (in_array($uri, $uris)) {
@@ -85,23 +91,28 @@ $router->add('/playlist/{slug}', [
         && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
         return false;
     }
+
     return true;
 });
+
 $router->add('/language/{code}', [
     'controller' => 'language',
-    'action' => 'index'
+    'action' => 'index',
 ]);
+
 $router->add('/pages/service', [
     'controller' => 'pages',
-    'action' => 'service'
+    'action' => 'service',
 ]);
+
 $router->add('/pages/{router}', [
     'controller' => 'pages',
-    'action' => 'index'
+    'action' => 'index',
 ]);
+
 $router->add('/service', [
     'controller' => 'pages',
-    'action' => 'service'
+    'action' => 'service',
 ]);
 
 
