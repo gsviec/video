@@ -12,6 +12,7 @@
  */
 namespace Phanbook\Models;
 
+use Carbon\Carbon;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Resultset\Simple as Resultset;
@@ -333,12 +334,17 @@ class ModelBase extends Model
         //$this->addBehavior(new ModelBlameable());
         $this->keepSnapshots(true);
     }
+
     /**
-     * @return bool|string
+     * @return string
      */
     public function getHumanCreatedAt()
     {
-        return ZFunction::getHumanDate($this->createdAt);
+        if (empty($this->createdAt)) {
+            return Carbon::now()->diffForHumans();
+        }
+
+        return Carbon::createFromTimestamp($this->createdAt)->diffForHumans();
     }
 
     /**
