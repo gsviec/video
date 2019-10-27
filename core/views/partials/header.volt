@@ -70,13 +70,7 @@
             {% else %}
                 <div class="avatar sub-header pull-right hidden-xs">
                     <img class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                         src="/images/avatar.png" alt="avatar" width="100" height="100"/>
-                    <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">{{ t('Hello') }}<span class="caret"></span></a>
-                    <a href="/login">{{ t('Login') }}</a>
-                    <a href="/signup">{{ t('Sign up') }}</a>
-                    <span class="status dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                          aria-expanded="false"></span>
+                         src="/images/user-login.png" alt="Register" width="100" height="100"/>
                     <ul class="dropdown-menu">
                         <li><a href="/login">{{ t('Login') }}</a></li>
                         <li><a href="/signup">{{ t('Sign up') }}</a></li>
