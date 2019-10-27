@@ -1023,6 +1023,8 @@ ul.menu {
   padding-top: 25px;
 }
 .b-video .v-views {
+    display: flex;
+    justify-content: space-between;
   font-size: 15px;
   color: #7e7e7e;
   padding-bottom: 40px;

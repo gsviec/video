@@ -340,6 +340,11 @@ class ModelBase extends Model
     {
         return ZFunction::getHumanDate($this->createdAt);
     }
+
+    /**
+     * @param $number
+     * @return string
+     */
     public function setHumanViewNumber($number)
     {
         if ($number > 1000000) {

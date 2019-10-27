@@ -13,8 +13,8 @@
                     <a href="/watch?v={{video.getShortId() }}">{{ truncate(video.title, 69) }}</a>
                 </div>
                 <div class="v-views">
-                    <span class="view-count">{{video.getHumanNumberViews()}} views</span>
-                    <span class="created-time">&nbsp;{{ video.getHumanCreatedAt()}} </span>
+                    <div class="view-count">{{video.getHumanNumberViews()}} views</div>
+                    <div class="created-time">&nbsp;{{ video.getHumanCreatedAt()}} </div>
                 </div>
             </div>
         </div>

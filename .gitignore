@@ -28,3 +28,4 @@ selenium-server-standalone-*.jar
 node_modules/
 public/blog/wp-config
 .env
+/docker-compose.*.yaml

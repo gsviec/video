@@ -38,6 +38,11 @@ docker-compose exec php php composer.phar install
 ### 2. Compile Frontend Assets.
 
 We use [Grunt](https://gruntjs.com/installing-grunt) for compiling frontend assets.
+
+**Notice**:
+Only use Grunt for compile when you deploy production.
+
+
 Please check the Node and npm version:
 
 ```bash
