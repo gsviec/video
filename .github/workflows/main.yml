@@ -32,4 +32,4 @@ jobs:
       env: 
         DEPLOY_KEY: ${{secrets.DEPLOY_KEY}} 
       with: 
-        args: "-avzr public --delete --exclude .htaccess --exclude /uploads/ root@139.162.6.235:/var/www/test/"
+        args: "-avzr --delete --exclude .htaccess --exclude /uploads/ root@139.162.6.235:/var/www/test/"
