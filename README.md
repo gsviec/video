@@ -68,7 +68,7 @@ grunt
 
 ### 3. Deploy
 
-If you want to deploy via ansible
+If you want to deploy via ansible:
 
 ```
 ansible-playbook -i hosts/production/inventory deploy.yml
