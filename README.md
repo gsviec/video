@@ -1,26 +1,47 @@
-### Gsviec.com
+## Gsviec.com
 
-Gsviec is the  simpple clone youtube channel for you. To see how it work just goto [gsviec.com](https://gsviec.com)
+Screencasts for the Vietnamese developers.
+To see how it work just goto [gsviec.com](https://gsviec.com)
 
-### Setup environment to devel
+## Install:
 
-First you need install docker and docker composer, after that just running the command below:
+### Requirements:
+- Docker
+- Docker-compose
+
+
+Step 1: Clone repo:
+
+```
+git clone git@github.com:gsviec/video.git
+
+````
+
+
+Step 2: Up
 
 ```
 docker-compose up -d
 
 ````
-Then waiting a moment to download on image, but gsviec video need library php so that you also need running command below
+
+Then waiting a moment to download on image, but gsviec video need library php so that you also need running command below'
+
+Step 3: Install dependencies
 
 ```
 docker-compose exec php php composer.phar install
 ````
 
+
 ### Compile Assets
 
-First you need install grunt and plugin it via command below
+We use [Grunt](https://gruntjs.com/installing-grunt) for compiling frontend assets.
 
-```
+
+Install grunt and plugin it via command below
+
+```bash
 npm install -g grunt-cli
 npm install grunt --save-dev
 npm install grunt-bump
@@ -45,12 +66,14 @@ If you want to deploy via ansible
 ansible-playbook -i hosts/production/inventory deploy.yml
 
 ```
-### Send new letter
-To test preview before send for all user
+### Sending newsletter
+
+To test preview before send to all users:
 
 ```
 php cli SendDigest
 ```
+
 When the template is ok,you can runing agian a command above with option
 
 ```

@@ -28,7 +28,7 @@
 
         <div>
             <i class="fa fa-map-marker"></i>
-            <p><span>22/10, Tan Lap, Dong Hoa</span> Di An, Binh Duong</p>
+            <p><span>36 Mai Chi Tho, An Phu, Q2, HCM</p>
         </div>
 
         <div>
