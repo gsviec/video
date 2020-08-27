@@ -44,20 +44,26 @@ class UploadVideo extends Resque
             $this->logger->error('Video not found in folder uploads/videos');
             return false;
         }
+        $this->logger->info('Video start upload');
+
         $duration  = Ffmpeg::getDuration($path);
         $thumbnail = Ffmpeg::getThumbnail($path, $id);
+        $imageKey  = 'video/image/' . $thumbnail[0];
+        $videoKey  = 'video/' . $filename;
         $post = Posts::findFirstByVideoFilename($filename);
         $post->setDuration($duration);
-        $post->setThumbnail($thumbnail);
-
+        $post->setThumbnail($imageKey);
+        $post->setVideoFilename($videoKey);
         if (!$post->save()) {
             $this->logger->error('Add a post was not success!' . $post->getMessages() . __LINE__);
             return false;
         }
 
-        $key  = 'video/' . $filename;
-        if ($this->storage->upload($path, $key)) {
+        if ($this->storage->upload($path, $videoKey)) {
             unlink($path);
+        }
+        if ($this->storage->upload($thumbnail[1], $imageKey, 'public-read')) {
+            unlink($thumbnail[1]);
         }
         return true;
     }

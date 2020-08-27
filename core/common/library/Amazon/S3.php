@@ -4,8 +4,9 @@ namespace Phanbook\Amazon;
 
 use Aws\S3\S3Client;
 use Aws\Exception\S3Exception;
+use Phalcon\Di\Injectable;
 
-class S3
+class S3 extends Injectable
 {
     /**
      * @var object
@@ -25,22 +26,22 @@ class S3
      *
      * @return bool
      */
-    public function upload($path, $key)
+    public function upload($path, $key, $acl = 'private')
     {
         if (!file_exists($path)) {
             return false;
         }
-
+        $this->logger->error($path);
         try {
             $this->client->putObject([
                 'Bucket' => $this->config->bucket,
                 'Key'    => $key,
                 'Body'   => fopen($path, 'rb'),
-                'ACL'    => 'public-read',
+                'ACL'    => $acl
             ]);
             return true;
         } catch (S3Exception $e) {
-            error_log("There was an error uploading the file to amazon");
+            $this->logger->error($e->getMessage());
             return false;
         }
     }
@@ -113,7 +114,7 @@ class S3
                     'key' => $this->config->key,
                     'secret' => $this->config->secret
                 ],
-                //'debug'   => true
+                'debug'   => true
             ]
         );
         return $s3Client;

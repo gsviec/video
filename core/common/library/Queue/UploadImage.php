@@ -68,12 +68,12 @@ class UploadImage extends Resque
             return false;
         }
         $path = public_path('uploads/videos/' . $filename);
-        $image = new Imagick($path);
-        $image->resize(400, 400)->crop(270, 169);
-        if (!$image->save()) {
-            $this->logger->error("Resize channel image not success", 1);
-            return false;
-        }
+//        $image = new Imagick($path);
+//        $image->resize(400, 400)->crop(270, 169);
+//        if (!$image->save()) {
+//            $this->logger->error("Resize channel image not success", 1);
+//            return false;
+//        }
 
         $key  = 'images/video/' . $filename;
         if ($this->storage->upload($path, $key)) {

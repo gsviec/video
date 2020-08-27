@@ -608,12 +608,7 @@ class Posts extends ModelBase
 
         }
         else {
-            if (!isset($this->thumbnail) || !file_exists(public_path('images/'. $this->thumbnail))) {
-                $this->setThumbnail(self::THUMBNAIL_DEFAULT);
-            }
-            $staticBaseUri = $this->getDI()->getConfig()->application->staticBaseUri;
-            $thumbnail = $staticBaseUri . 'images/' . $this->getThumbnail();
-
+            $thumbnail = $this->getDI()->getConfig()->application->cdn . $this->getThumbnail();
         }
         return $thumbnail;
     }
@@ -745,9 +740,9 @@ class Posts extends ModelBase
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMonetize(): string
+    public function getMonetize()
     {
         return $this->monetize;
     }
@@ -1280,8 +1275,8 @@ class Posts extends ModelBase
         } elseif ($this->techOrder == self::VIDEO_JWPLAYER) {
             $url = 'http://content.jwplatform.com/videos/' . $filename[0];
         } else {
-            $cf = new CloudFront();
-            $url = $cf->signedUrl($this->videoFilename);
+            //$cf = new CloudFront();
+            $url = '';
         }
         return $url;
     }
