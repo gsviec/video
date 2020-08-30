@@ -116,7 +116,6 @@ class PostsController extends ControllerBase
 
                 return $this->redirectKeepValue($id);
             }
-
             if (!$object->save()) {
                 foreach ($object->getMessages() as $m) {
                     $this->flashSession->error($m->getMessage());
@@ -281,6 +280,7 @@ class PostsController extends ControllerBase
      */
     public function viewAction()
     {
+
         $parameters = $this->getParameter();
         $encode = $parameters['v'];
         $userId = $this->auth->getAuth()['id'];
@@ -333,6 +333,7 @@ class PostsController extends ControllerBase
             $postView->setPostsId($id);
             $postView->setIpaddress($ipAddress);
             $postView->setUsersId($userId);
+            $postView->setCreatedAt(time());
             if (!$postView->save()) {
                 $this->saveLoger($postView->getMessages());
             }

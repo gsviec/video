@@ -757,6 +757,7 @@ class Posts extends ModelBase
         $this->numberViews = 0;
         $this->numberReply = 0;
         $this->acceptedAnswer = 'N';
+        $this->setSlug(uniqid(true));
 
         if (empty($this->techOrder)) {
             $this->techOrder = self::VIDEO_DEFAULT;
@@ -770,7 +771,7 @@ class Posts extends ModelBase
     }
     public function beforeValidation()
     {
-        $this->slug = Slug::generate($this->title);
+        $this->slug = Slug::generate($this->getTitle());
         if (empty($this->type)) {
             $this->type = self::POST_VIDEO;
         }

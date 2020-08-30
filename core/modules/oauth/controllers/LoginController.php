@@ -1,4 +1,4 @@
-x<?php
+<?php
 /**
  * Phanbook : Delightfully simple forum software
  *
