@@ -116,7 +116,6 @@ class PostsController extends ControllerBase
 
                 return $this->redirectKeepValue($id);
             }
-
             if (!$object->save()) {
                 foreach ($object->getMessages() as $m) {
                     $this->flashSession->error($m->getMessage());
@@ -137,10 +136,11 @@ class PostsController extends ControllerBase
      */
     public function saveAction()
     {
-        //  Is not $_POST
+
         if (!$this->request->isPost()) {
             return $this->response->redirect($this->router->getControllerName());
         }
+
         $this->view->disable();
 
         if ($this->request->isAjax()) {
@@ -158,11 +158,14 @@ class PostsController extends ControllerBase
                     if (!$this->videoCheck($extension)) {
                         return $this->respondWithError(t('The format video not correct'), 404);
                     }
+
                     $uniqid = uniqid(true);
                     $videoFilename = $uniqid . '.' . $extension;
+                    //d(public_path('uploads/videos/' . $videoFilename));
                     if (!$file->moveTo(public_path('uploads/videos/' . $videoFilename))) {
                         return $this->respondWithError('Not found tmp', 404);
                     }
+
                     $object->setVideoFilename($videoFilename);
                     $arr = ['id' => $uniqid, 'videoFilename' => $videoFilename];
                     //Put to jobs
@@ -277,6 +280,7 @@ class PostsController extends ControllerBase
      */
     public function viewAction()
     {
+
         $parameters = $this->getParameter();
         $encode = $parameters['v'];
         $userId = $this->auth->getAuth()['id'];
@@ -329,6 +333,7 @@ class PostsController extends ControllerBase
             $postView->setPostsId($id);
             $postView->setIpaddress($ipAddress);
             $postView->setUsersId($userId);
+            $postView->setCreatedAt(time());
             if (!$postView->save()) {
                 $this->saveLoger($postView->getMessages());
             }
@@ -360,21 +365,18 @@ class PostsController extends ControllerBase
             'author' => $post->user->getFullName(),
             'isPremium' => false,
         ]);
-
+        if ($post->getTechOrderAndType() !== 'youtube') {
+            $this->assets->addJs('https://vjs.zencdn.net/7.5.4/video.js', false);
+            $this->assets->addCss('/css/video.css');
+            $url = $this->storage->createPresignedRequest($post->videoFilename);
+            $this->view->url = $url;
+        }
         if ($post->isPrivate()) {
             $playlistId = PostsPlaylist::getPlaylistIdByPostId($id);
-
             if (count(array_intersect($playlistId, $this->auth->getPlaylisId())) > 0) {
                 $this->view->isPremium = true;
-                $this->assets->addJs('https://vjs.zencdn.net/7.5.4/video.js', false);
-                $this->assets->addCss('/css/video.css');
-                $url = $this->storage->createPresignedRequest('SampleVideo_1280x720_1mb.mp4');
-                $this->view->url = $url;
-                //d($url);
             }
         }
-        // d($post->toArray());
-
     }
 
     /**

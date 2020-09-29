@@ -34,7 +34,7 @@ class Ffmpeg
     /**
      * @param $videoPath
      * @param $id
-     * @return string | null
+     * @return []
      */
     public static function getThumbnail($videoPath, $id)
     {
@@ -43,8 +43,8 @@ class Ffmpeg
         $cmd = "ffmpeg -y -i {$videoPath}  -vframes 1 " . $outputPath;
         exec($cmd, $result);
         if (file_exists($outputPath)) {
-            return $outputPath;
+            return [$filename, $outputPath];
         }
-        return null;
+        return [];
     }
 }

@@ -40,6 +40,7 @@ return new \Phalcon\Config(
          * Application settings
          */
         'application' => [
+            'cdn' => getenv('CDN'),
             /**
              * The site name, you should change it to your name website
              */
@@ -237,7 +238,7 @@ return new \Phalcon\Config(
         ],
         'reCaptcha' => [
             'siteKey' => getenv('SITE_KEY'),
-            'secretKey'  => getenv('SECRET_KEY')    
+            'secretKey'  => getenv('SECRET_KEY')
         ],
     ]
 );

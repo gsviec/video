@@ -7,14 +7,17 @@
                    {% if post.techOrder == 'youtube' %}
                         <iframe width="760" height="300" src="{{ post.getStreamUrl() }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                    {% else %}
-                        {% if isPremium == true %}
+                        {% if isPremium == true and post.status == 'private' %}
+                            <video class='vjs-matrix video-js' controls preload='auto' width="100%" height="100%">
+                                <source src="{{ url }}" type='video/mp4'>
+                            </video>
+                        {% elseif post.status != 'private' %}
                             <video class='vjs-matrix video-js' controls preload='auto' width="100%" height="100%">
                                 <source src="{{ url }}" type='video/mp4'>
                             </video>
                         {% else %}
-                            <p> {{ playlist.content }}</p>
-                            <p> Video này thuộc phần nâng cao của khóa học {{ playlist.title }} do đó bạn cần phải thanh toán trước khi xem video này, để thanh toán khóa học này bạn chỉ việc click link này. https://gsviec.com/shop/product/{{ playlist.slug }}</p>
-
+                            <video class='vjs-matrix video-js' controls preload='auto' width="100%" height="100%">
+                            </video>
                         {% endif %}
                    {% endif %}
             </div>
@@ -414,50 +417,36 @@
     var type  = "{{post.techOrder}}";
     var title = "{{post.title}}";
 
-    if (type != 'youtube') {
-        var player = jwplayer('my-video');
+    //Add
+    $('.js-item-playlist').on('click', function (e) {
+        console.log('aa');
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url : '/playlist/save',
+            dataType: 'json',
+            data: {
+                'postId': $(this).data('post-id'),
+                'playlistId' : $(this).data('playlist-id')
+            },
+            success: function (data) {
 
-        player.setup({
-          file: url,
-          sharing: {
-                link: url,
-                heading: title
-          }
-        });
-        jwplayer().on('levels', function() {
-            var index = jwplayer().getQualityLevels();
-            jwplayer().setCurrentQuality(index.lenght);
-        });
-        //Add
-        $('.js-item-playlist').on('click', function (e) {
-            e.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url : '/playlist/save',
-                dataType: 'json',
-                data: {
-                    'postId': $(this).data('post-id'),
-                    'playlistId' : $(this).data('playlist-id')
-                },
-                success: function (data) {
+                if (data.hasOwnProperty('error')) {
+                    var $m = data.error.message,
+                        $class = 'alert-danger';
 
-                    if (data.hasOwnProperty('error')) {
-                        var $m = data.error.message,
-                            $class = 'alert-danger';
+                } else {
 
-                    } else {
-
-                        var $m = data.success.message,
-                            $class = 'alert-success';
-                    }
-                    var $item = '<div class="alert ' + $class + '">';
-                        $item = $item + '<span class="name">' + $m + '</span></div>';
-
-                    $('.add-playlist').after($item);
+                    var $m = data.success.message,
+                        $class = 'alert-success';
                 }
-            });
+                var $item = '<div class="alert ' + $class + '">';
+                $item = $item + '<span class="name">' + $m + '</span></div>';
 
+                $('.add-playlist').after($item);
+            }
         });
-    }
+
+    });
 </script>
 {% endblock %}

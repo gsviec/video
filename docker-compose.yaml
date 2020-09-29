@@ -18,11 +18,13 @@ services:
    depends_on:
      - db
      - redis
-   image: gsviec/php:7.3-alpine
+   image: gsviec/video
    ports:
-     - "80:80"
+     - "80:8080"
    volumes:
-    - ./:/app
+    - ./:/var/www
+    - ./docker-nginx-site.conf:/etc/nginx/nginx.conf
+    - ./php.ini-production:/usr/local/etc/php/php.ini
    environment:
      DB_HOST: db:3306
      DB_USER: root
@@ -30,12 +32,13 @@ services:
      DB_NAME: gsviec
      APPLICATION_ENV: local
      REDIS_HOST: redis
+     PHP_UPLOAD_MAX_FILESIZE: 2000M
    env_file:
       - .env
 
   phpmyadmin:
     restart: 'no'
-    image: phpmyadmin/phpmyadmin:fpm-alpine
+    image: phpmyadmin/phpmyadmin
     depends_on:
       - db
     ports:

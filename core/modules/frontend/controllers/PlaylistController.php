@@ -17,6 +17,7 @@ use Phanbook\Models\Categories;
 use Phanbook\Models\Playlist;
 use Phanbook\Models\PostsPlaylist;
 use Phanbook\Models\WatchLater;
+use Phanbook\Utils\Slug;
 
 /**
  * Class PlaylistController
@@ -55,6 +56,7 @@ class PlaylistController extends ControllerBase
         $playlist = new Playlist();
         $playlist->setTitle($data['title']);
         $playlist->setContent($data['content']);
+        $playlist->setSlug(Slug::generate($data['title']));
         if (!$playlist->save()) {
             $this->saveLoger($playlist->getMessages());
             $this->flashSession->error($playlist->getMessages()[0]);
