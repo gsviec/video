@@ -18,7 +18,7 @@ services:
    depends_on:
      - db
      - redis
-   image: gsviec/video
+   build: .
    ports:
      - "80:8080"
    volumes:

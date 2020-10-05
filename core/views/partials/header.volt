@@ -14,10 +14,10 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav list-inline menu">
                     <li><a href="/blog">{{ t('Blog') }}</a></li>
-                    <li><a href="/shop">{{ t('Cửa hàng') }}</a></li>
-                    <li><a href="/job">{{ t(' Việc làm') }}</a></li>
+                    <li><a href="/jobs">{{ t(' Việc làm') }}</a></li>
                     <li><a href="/service">{{ t('Dịch vụ') }}</a></li>
                     <li><a href="/playlist">{{ t('Series') }}</a></li>
+
                     <li class="hidden-lg hidden-md hidden-sm"><a href="/login">{{ t('Login') }}</a></li>
                     <li class="hidden-lg hidden-md hidden-sm"><a href="/signup">{{ t('Sign up') }}</a></li>
                 </ul>
@@ -41,7 +41,7 @@
                                         <li><a href="#"><i class="cv cvicon-cv-star"></i> Top Rated</a></li>
                                         <li><a href="#"><i class="cv cvicon-cv-watch-later"></i> Longest</a></li>
                                     </ul>
-                                </div>
+                                </div><!-- /btn-group -->
                             </div>
                         </div>
                     </form>
@@ -66,15 +66,12 @@
                         <li><a href="/logout">{{ t('Logout') }}</a></li>
                     </ul>
                 </div>
-            </div>
             {% else %}
                 <div class="avatar sub-header pull-right hidden-xs">
                     <img class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                          src="/images/avatar.png" alt="avatar" width="100" height="100"/>
-                    <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">{{ t('Hello') }}<span class="caret"></span></a>
-                    <a href="/login">{{ t('Login') }}</a>
-                    <a href="/signup">{{ t('Sign up') }}</a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Xin
+                        chào<span class="caret"></span></a>
                     <span class="status dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                           aria-expanded="false"></span>
                     <ul class="dropdown-menu">
@@ -83,6 +80,7 @@
                     </ul>
                 </div>
             {% endif %}
+        </div>
         </div>
     </nav>
 </div>
