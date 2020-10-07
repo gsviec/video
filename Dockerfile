@@ -8,6 +8,7 @@ RUN pecl install -o -f redis-5.1.1 \
 &&  docker-php-ext-enable redis
 
 RUN docker-php-ext-install bcmath
+RUN rm -rf html
 # production-ready dependencies
 COPY . /var/www
 RUN composer install --prefer-dist --no-interaction

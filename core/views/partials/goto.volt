@@ -24,16 +24,3 @@
         </div>
     </div>
 {% endif %}
-
-{% if isSeries is defined  %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>{{ playlist.title}}</h1>
-                <div>
-                    {{ this.markdown.text(playlist.content) }}
-                </div>
-            </div>
-        </div>
-    </div>
-{% endif %}

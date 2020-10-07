@@ -54,6 +54,24 @@ class Playlist extends ModelBase
      */
     protected $status;
 
+    protected $price;
+
+    protected $code;
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
     /**
      * Method to set the value of field id
      *
@@ -357,7 +375,9 @@ class Playlist extends ModelBase
             'content' => 'content',
             'imageFilename' => 'imageFilename',
             'createdAt' => 'createdAt',
-            'status' => 'status'
+            'status' => 'status',
+            'price' => 'price',
+            'code' => 'code'
         );
     }
 
