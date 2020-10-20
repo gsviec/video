@@ -3,30 +3,6 @@
 {% block content %}
     <div class="row">
         <div class="col-lg-12">
-            <!-- Featured Videos -->
-            {% if featureVideos | length > 0 %}
-                <div class="content-block head-div">
-                    <div class="cb-header">
-                        <div class="row">
-                            <div class="col-lg-10 col-sm-10 col-xs-8">
-                                <ul class="list-inline">
-                                    <li><a href="#" class="active">Featured Videos</a></li>
-                                    <li><a href="#">New Videos</a></li>
-                                    <li><a href="#">Recommended For You</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-2 col-sm-2 col-xs-4">
-                                {{ partial('partials/sortby') }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cb-content videolist">
-                        {{ partial('partials/list-video', ['videos' : featureVideos]) }}
-                    </div>
-                </div>
-            {% endif %}
-            <!-- /Featured Videos -->
-
             <!-- New Videos in India -->
             {% if newVideos | length > 0 %}
                 <div class="content-block head-div">
@@ -34,57 +10,17 @@
                         <div class="row">
                             <div class="col-lg-10 col-sm-10 col-xs-8">
                                 <ul class="list-inline">
-                                    <li><a href="#" class="color-active">{{ t('New Videos') }}</a></li>
-                                    <li><a href="#">{{ t('Most Viewed') }}</a></li>
-                                    <li><a href="#">{{ t('Featured This Week') }}</a></li>
+                                    <li><a href="#" class="color-active">{{ t('Premiums Courses') }}</a></li>
                                 </ul>
                             </div>
-                            {{ partial('partials/sortby') }}
                         </div>
                     </div>
                     <div class="cb-content videolist">
-                        {{ partial('partials/list-video', ['videos' : newVideos]) }}
+                        {{ partial('partials/list-course', ['videos' : newVideos]) }}
                     </div>
                 </div>
             {% endif %}
             <!-- /New Videos -->
-
-            {% if phpVideos | length > 0 %}
-                <div class="content-block head-div">
-                    <div class="cb-header">
-                        <div class="row">
-                            <div class="col-lg-10 col-sm-10 col-xs-8">
-                                <ul class="list-inline">
-                                    <li><a href="/categories/php" class="color-active">{{ t('PHP Videos') }}</a></li>
-                                </ul>
-                            </div>
-                            {{ partial('partials/sortby') }}
-                        </div>
-                    </div>
-                    <div class="cb-content videolist">
-                        {{ partial('partials/list-video', ['videos' : phpVideos]) }}
-                    </div>
-                </div>
-            {% endif %}
-
-            {% if wpVideos | length > 0 %}
-                <div class="content-block head-div">
-                    <div class="cb-header">
-                        <div class="row">
-                            <div class="col-lg-10 col-sm-10 col-xs-8">
-                                <ul class="list-inline">
-                                    <li><a href="/categories/wordpress"
-                                           class="color-active">{{ t('Wordpress Videos') }}</a></li>
-                                </ul>
-                            </div>
-                            {{ partial('partials/sortby') }}
-                        </div>
-                    </div>
-                    <div class="cb-content videolist">
-                        {{ partial('partials/list-video', ['videos' : wpVideos]) }}
-                    </div>
-                </div>
-            {% endif %}
 
             {% if phalconVideos | length > 0 %}
                 <div class="content-block head-div">
@@ -171,9 +107,9 @@
             <!-- /Popular Channels -->
 
             <!-- pagination -->
-            <div class="v-pagination">
-                {{ partial('partials/pagination', ['currentPage':  page, 'totalPages' : 10]) }}
-            </div>
+{#            <div class="v-pagination">#}
+{#                {{ partial('partials/pagination', ['currentPage':  page, 'totalPages' : 10]) }}#}
+{#            </div>#}
             <!-- /pagination -->
         </div>
     </div>

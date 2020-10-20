@@ -5,7 +5,6 @@ services:
    image: mysql:5.7
    volumes:
      - db_data:/var/lib/mysql
-   restart: always
    environment:
      MYSQL_ROOT_PASSWORD: gsviec
      MYSQL_DATABASE: gsviec
@@ -18,7 +17,7 @@ services:
    depends_on:
      - db
      - redis
-   image: gsviec/video
+   build: .
    ports:
      - "80:8080"
    volumes:

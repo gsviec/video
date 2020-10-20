@@ -2,6 +2,19 @@
 {% block title %}{{ playlist.title }}{% endblock %}
 {% block content %}
     <div class="row">
+        <div class="col-md-12">
+            <h1>{{ playlist.title}}</h1>
+            <div>
+                {{ this.markdown.text(playlist.content) }}
+            </div>
+            {%  if playlist.price %}
+            <div>
+                <a href="/pages/buy" >Mua khoá học này chỉ với: <mark>{{ number_format(playlist.price) }} đ</mark>, xem hướng dẫn
+                cách mua khoá học</a>
+                <p>Mã code khoá học: <mark>{{ playlist.code  }}</mark></p>
+            </div>
+            {% endif %}
+        </div>
         <div class="col-lg-12 v-history">
             <!-- History -->
             <div class="content-block">

@@ -35,6 +35,7 @@
     <title>{% block title%}{% endblock %} - {{name}}</title>
 
     {{ this.assets.outputCss() }}
+{#    <link href="https://serversforhackers.com/css/app.css?id=9c1ebd681ac41ff68677" rel="stylesheet">#}
     <script type="text/javascript">
         var baseUri     = '{{ baseUri }}';
         var controller  = '{{ controller }}';

@@ -347,6 +347,7 @@ class PostsController extends ControllerBase
         if (isset($parameters['list'])) {
             $this->view->listVideo = Playlist::getPlayListVideoBySlug($parameters['list']);
             $this->view->listName = $parameters['list'];
+            $this->view->next = ShortId::encode($id );
         }
 
         $this->view->setVars([
