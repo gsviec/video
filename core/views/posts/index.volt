@@ -107,9 +107,9 @@
             <!-- /Popular Channels -->
 
             <!-- pagination -->
-            <div class="v-pagination">
-                {{ partial('partials/pagination', ['currentPage':  page, 'totalPages' : 10]) }}
-            </div>
+{#            <div class="v-pagination">#}
+{#                {{ partial('partials/pagination', ['currentPage':  page, 'totalPages' : 10]) }}#}
+{#            </div>#}
             <!-- /pagination -->
         </div>
     </div>

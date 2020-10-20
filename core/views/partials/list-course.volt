@@ -7,7 +7,7 @@
         <p>
             Khóa học Amazon Web Services Cloud sẽ trang bị kiến thức, kỹ năng để giúp bạn nắm vững, sử dụng hiệu quả, quản trị, bảo mật các dịch vụ của Amazon Web Services.
         </p>
-        <a href="" >View Course</a></p>
+        <a href="/playlist/aws-101" >View Course</a></p>
     </div>
 
     <div class="col-lg-4 col-sm-6">

@@ -11,6 +11,10 @@
 </div>
 <!-- END up next -->
 <div class="list">
+    <ul class="pager">
+        <li><a href="/watch?v={{ next }}&list={{listName}}">Previous</a></li>
+        <li><a href="#">Next</a></li>
+    </ul>
     {% for i, video in listVideo %}
         <div class="h-video playlist row">
             <div class="col-lg-5 col-sm-5 col-xs-6">
