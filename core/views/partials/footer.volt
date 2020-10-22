@@ -1,24 +1,19 @@
 <footer class="footer-distributed">
-
     <div class="footer-left">
-
         <h3><span>
                 <a href="/">
-                    <img class="logo" src="/images/logo.png?v1">
+                    <img class="logo" src="/images/logo.png">
                 </a>
             </span>
         </h3>
-
         <p class="footer-links">
-            <a href="#">Home</a>
+            <a href="/">Home</a>
             ·
             <a href="/blog">Blog</a>
             ·
             <a href="/pages/about">About</a>
             ·
-            <a href="#">Faq</a>
-            ·
-            <a href="/pages/about">Contact</a>
+            <a href="/service">Contact</a>
         </p>
 
         <p class="footer-company-name">{{ name }} &copy; 2017</p>
@@ -28,7 +23,7 @@
 
         <div>
             <i class="fa fa-map-marker"></i>
-            <p><span>36 Mai Chi Tho, An Phu, Q2, HCM</p>
+            <p><span>101 Bưng Ông Thoàn,Phường Phú Hữu, Quận 9, HCM </p>
         </div>
 
         <div>
@@ -54,7 +49,6 @@
 
             <a href="https://www.facebook.com/gsviec/" target="_blank"><i class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="https://plus.google.com/103825127531667304533?prsrc=5" target="_blank"><i class="fa fa-google"></i></a>
             <a href="https://github.com/gsviec" target="_blank"><i class="fa fa-github"></i></a>
         </div>
     </div>

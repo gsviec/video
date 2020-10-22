@@ -88,7 +88,11 @@ When the template is ok,you can runing agian a command above with option
 ```
 php cli SendDigest main send
 ```
+### Running worker
 
+```
+php cli Queue
+```
 ### 5. License
 
 The MIT License (MIT). 

@@ -2,7 +2,7 @@
     <div class="col-lg-4 col-sm-6">
         <div class="h-2" style="background: rgb(245, 119, 116) none repeat scroll 9% 0%;"></div>
         <h3>
-            <a href="" >AWS 101</a>
+            <a href="/playlist/aws-101" >AWS 101</a>
         </h3>
         <p>
             Khóa học Amazon Web Services Cloud sẽ trang bị kiến thức, kỹ năng để giúp bạn nắm vững, sử dụng hiệu quả, quản trị, bảo mật các dịch vụ của Amazon Web Services.
@@ -49,7 +49,7 @@
             <a href="/playlist/khoa-hoc-phalcon-can-ban">Phalcon 101</a>
         </h3>
         <p>
-            Trong hơn 5 năm qua tôi đã nghiên cứu và làm việc trên Phalcon Framework để xây dựng ứng dụng online theo yêu cầu của khách hàng. Trong quá trình xây và phát triển dựng dự án cho khách hàng, ...
+            Trong hơn 5 năm qua tôi đã nghiên cứu và làm việc trên Phalcon Framework để xây dựng ứng dụng online theo yêu cầu của khách hàng. Trong quá trình xây và phát triển...
         </p>
         <p><a href="/playlist/khoa-hoc-phalcon-can-ban">View Course</a></p>
     </div>

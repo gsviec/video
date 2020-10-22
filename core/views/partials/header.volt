@@ -13,8 +13,8 @@
             </a>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav list-inline menu">
-                    <li><a href="/blog">{{ t('Blog') }}</a></li>
-                    <li><a href="/jobs">{{ t(' Việc làm') }}</a></li>
+                    <li><a href="/blog/">{{ t('Blog') }}</a></li>
+                    <li><a href="/jobs/">{{ t(' Việc làm') }}</a></li>
                     <li><a href="/service">{{ t('Dịch vụ') }}</a></li>
                     <li class="hidden-lg hidden-md hidden-sm"><a href="/login">{{ t('Login') }}</a></li>
                     <li class="hidden-lg hidden-md hidden-sm"><a href="/signup">{{ t('Sign up') }}</a></li>

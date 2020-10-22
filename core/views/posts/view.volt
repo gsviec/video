@@ -21,7 +21,7 @@
                         {% endif %}
                    {% endif %}
             </div>
-            <h1><a href="#">{{post.title}}</a></h1>
+            <h1><a href="#">{{post.title}}</a> <a class="mark pull-right" href="/playlist/{{ listName }}">Buy now</a></h1>
             {% set user = post.user %}
             <div class="author">
                 <a href="/channels/{{user.getChannelSlug()}}">
