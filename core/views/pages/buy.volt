@@ -19,9 +19,10 @@
             của khoá học bạn sẽ thấy nó.</p>
 
             <h3>Thông tin ngân hàng</h3>
-            <p>Tên ngân hàng : <mark>VietCombank (VCB)</mark></p>
+            <p>Tên ngân hàng : <mark>Ngân hàng Á Châu (ACB)</mark></p>
+            <p>Chi nhánh: <mark>Thủ Đức</mark></p>
             <p>Chủ tài khoản : <mark>TRẦN DUY THIỆN</mark></p>
-            <p>Số tài khoản :  <mark>0071000744742</mark></p>
+            <p>Số tài khoản :  <mark>189312909</mark></p>
         </div>
     </div>
 {% endblock %}
