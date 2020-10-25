@@ -342,7 +342,7 @@ class PostsController extends ControllerBase
         $vote = $post->getVotes($id, Vote::OBJECT_POSTS);
         $comments = $post->getCommentWithVotes($id);
         list($nextVideo, $total) = $post->getPostRelated($post);
-
+        $this->view->listName = null;
         //Display video for play list
         if (isset($parameters['list'])) {
             $this->view->listVideo = Playlist::getPlayListVideoBySlug($parameters['list']);

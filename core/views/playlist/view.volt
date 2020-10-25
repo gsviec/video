@@ -46,8 +46,12 @@
                                 <div class="col-lg-8 col-xs-10 col-sm-5">
                                     <div class="v-desc">
                                         <a href="/watch?v={{video.getShortId()}}&list={{playlist.slug}}" class="text-bold">
-                                            {{ t('Part') }} {{ i+1 }}: {{ video.title }}
-                                            <span class="label label-success">FREE</span>
+                                            {{ video.title }}
+                                            {% if video.isPublish() %}
+                                                <span class="label label-success">Free</span>
+                                            {% else %}
+                                                <span class="label label-success">Buy</span>
+                                            {% endif %}
                                         </a>
                                         <br/>
                                         <div class="play-list-excerpt content">
