@@ -207,6 +207,15 @@ class Posts extends ModelBase
      */
     protected $videoFilename;
 
+    protected $playlistId;
+
+    /**
+     * @return mixed
+     */
+    public function getPlaylistId()
+    {
+        return $this->playlistId;
+    }
     /**
      * Method to set the value of field id
      *
@@ -1346,7 +1355,8 @@ class Posts extends ModelBase
             'locked' => 'locked',
             'deleted' => 'deleted',
             'acceptedAnswer' => 'acceptedAnswer',
-            'monetize' => 'monetize'
+            'monetize' => 'monetize',
+            'playlistId' => 'playlistId'
         ];
     }
 }

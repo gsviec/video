@@ -10,7 +10,7 @@
             </div>
             <div class="vcontent">
                 <div class="v-desc">
-                    <a href="/watch?v={{video.getShortId() }}">{{ truncate(video.title, 69) }}</a>
+                    <a href="/watch?v={{video.getShortId() }}&list={{ video.getPlaylistId() }}">{{ truncate(video.title, 69) }}</a>
                 </div>
                 <div class="v-views">
                     <span class="view-count">{{video.getHumanNumberViews()}} views</span>
