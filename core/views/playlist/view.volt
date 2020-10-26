@@ -50,7 +50,7 @@
                                             {% if video.isPublish() %}
                                                 <span class="label label-success">Free</span>
                                             {% else %}
-                                                <span class="label label-success">Buy</span>
+                                                <span class="label label-danger">Buy</span>
                                             {% endif %}
                                         </a>
                                         <br/>
