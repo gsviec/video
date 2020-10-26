@@ -14,14 +14,14 @@
         <div class="h-video row">
             <div class="col-lg-6 col-sm-6">
                 <div class="v-img">
-                    <a href="/watch?v={{video.getShortId()}}">
+                    <a href="/watch?v={{video.getShortId()}}&list={{ video.getPlaylistId() }}">
                         <img src="{{video.getThumbnail()}}" alt=""></a>
                     <div class="time">{{video.duration}}</div>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-6">
                 <div class="v-desc">
-                    <a href="/watch?v={{video.getShortId()}}">{{video.title}}</a>
+                    <a href="/watch?v={{video.getShortId()}}&list={{ video.getPlaylistId() }}">{{video.title}}</a>
                 </div>
                 <div class="v-views">
                     {{video.getHumanNumberViews()}} views

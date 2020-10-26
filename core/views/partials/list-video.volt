@@ -3,7 +3,7 @@
     <div class="col-lg-3 col-sm-6 videoitem">
         <div class="b-video" data-id="{{video.id}}">
             <div class="v-img">
-                <a href="/watch?v={{video.getShortId()}}">
+                <a href="/watch?v={{video.getShortId()}}&list={{ getPlaylistId() }}">
                     <img class="img-responsive" src="{{video.getThumbnailUrl()}}" alt="{{ video.title }}">
                 </a>
                 <div class="time">{{video.duration}}</div>
