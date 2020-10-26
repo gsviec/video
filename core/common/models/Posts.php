@@ -893,18 +893,7 @@ class Posts extends ModelBase
             //$this->getDI()->getQueue()->put($toNotify);
         }
     }
-    public function afterUpdate()
-    {
-        //Put jobs to upload the image after get form video
-        if (!empty($this->getThumbnail()) && self::VIDEO_DEFAULT == $this->getTechOrder()) {
-            $this->getDI()->getQueue()->enqueue(
-                'upload_image_video',
-                'Phanbook\\Queue\\UploadImage',
-                ['filename' => $this->getThumbnail(), 'videoImage' => true],
-                true
-            );
-        }
-    }
+
     /**
      * @return string
      */

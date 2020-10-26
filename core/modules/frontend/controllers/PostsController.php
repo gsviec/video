@@ -369,7 +369,7 @@ class PostsController extends ControllerBase
         if ($post->getTechOrderAndType() !== 'youtube') {
             $this->assets->addJs('https://vjs.zencdn.net/7.5.4/video.js', false);
             $this->assets->addCss('/css/video.css');
-            $url = $this->storage->createPresignedRequest($post->videoFilename);
+            $url = $this->storage->createPresignedRequest('video/' . $post->videoFilename);
             $this->view->url = $url;
         }
         if ($post->isPrivate()) {
