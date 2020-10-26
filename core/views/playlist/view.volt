@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="col-lg-8 col-xs-10 col-sm-5">
                                     <div class="v-desc">
-                                        <a href="/watch?v={{video.getShortId()}}&list={{playlist.slug}}" class="text-bold">
+                                        <a href="/watch?v={{video.getShortId()}}&list={{playlist.id}}" class="text-bold">
                                             {{ video.title }}
                                             {% if video.isPublish() %}
                                                 <span class="label label-success">Free</span>
