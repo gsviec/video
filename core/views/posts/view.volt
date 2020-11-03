@@ -16,8 +16,9 @@
                                 <source src="{{ url }}" type='video/mp4'>
                             </video>
                         {% else %}
-                            <video class='vjs-matrix video-js' controls preload='auto' width="100%" height="100%">
-                            </video>
+                            <a href="/playlist/{{ listName }}">
+                                <img class='vjs-matrix video-js' src="https://d3n5l38ybzbwj2.cloudfront.net/image/buy-now.jpg" alt="">
+                            </a>
                         {% endif %}
                    {% endif %}
             </div>
