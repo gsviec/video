@@ -11,12 +11,11 @@
             <p class="mark">Tên của bạn không dấu  + Số điện thoại của bạn + mã code khoá học </p>
 
             <p> Ví dụ tên tôi là trần duy thiện, số điện thoại là 0388397026 và khoá học tôi
-            muốn mua là https://gsviec.com/playlist/khoa-hoc-phalcon-102, thì cú pháp nó sẽ là:
-                <mark>Thien 0388397026 phalcon102</mark>
+            muốn mua là <a href="https://gsviec.com/playlist/aws-101" target="_blank">https://gsviec.com/playlist/aws-101</a>, thì cú pháp nó sẽ là:
+                <mark>Thien 0388397026 aws-01</mark>
             </p>
 
-            <p>Chú ý để có thể biết được mã code khoá học, thì bạn hãy nhìn bên phía phải màn hình
-            của khoá học bạn sẽ thấy nó.</p>
+            <p>Chú ý để có thể biết được mã code khoá học, thì bạn hãy nhìn bên góc trái màn hình, ngay chỗ chi phí khoá học.</p>
 
             <h3>Thông tin ngân hàng</h3>
             <p>Tên ngân hàng : <mark>Ngân hàng Á Châu (ACB)</mark></p>
